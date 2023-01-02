@@ -1,0 +1,46 @@
+Create apps: 
+client: authenticate, booking, outlook, profile 
+owner: authenticate, availability
+
+
+Forms: create a form for user registration with only one field for phone number, requiring a proper length, 
+all integer items, and so on so that messages may appear when some requirements are not met.
+
+
+Need to delete CustomUser model and reference django User model in the other models
+from django.contrib.auth.models import User and customize it extending the model if necessary.
+
+It seems like when the first user appointment lasts 40 min, no appointment will be displayed
+
+
+
+
+
+
+
+navbar 
+navbar-expand-lg 
+navbar-dark 
+bg-dark
+container 
+px-lg-5
+navbar-brand
+navbar-toggler
+navbar-toggler-icon
+collapse 
+navbar-collapse
+navbar-nav 
+ms-auto 
+mb-2 
+mb-lg-0
+nav-item
+nav-link
+py-5 
+main
+p-4 
+p-lg-5 
+bg-light 
+rounded-3 
+text-center
+m-0  
+text-white

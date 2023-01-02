@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Personal info{% endblock %}
+
+
+{% block content %}
+
+<div class='container'>
+    <h1>Fill in these optional fields</h1>
+    <form action="" method='POST'>
+        {% csrf_token %}
+        <div class="form-row inner-container">
+            <div class="form-group col-md-4">
+                <label for="email">Email</label>
+                {{ form.email }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="first_name">First name</label>
+                {{ form.first_name }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="last_name">Last name</label>
+                {{ form.last_name }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="date_of_birth">Date of birth</label>
+                {{ form.date_of_birth }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="occupation">Occupation</label>
+                {{ form.occupation }}
+            </div>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+    
+</div>
+
+{% endblock %}

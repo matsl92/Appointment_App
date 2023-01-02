@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Select overwrite{% endblock %}
+
+{% block content %}
+<h1>There are some gaps already created for {{ start_date_name }}</h1>
+<div class='container'>
+    <form action="/create_gaps/" method='GET'>
+        {% csrf_token %}
+        <div class="form-row inner-container">
+            <div class="form-group col-md-4">
+                <label for="option">Select an action</label>
+                <select class='form-control form-select' name="option" id="option" placeholder='Days to be desplayed'>
+                    <option value="0">Select a different start day</option>    
+                    <option value="2">Edit available gaps and keep the scheduled ones</option>
+                    <option value="3">Overwrite and cancel gaps for selected days</option>
+                </select>
+            </div>
+            <div>
+                <input type="hidden" name='minutes_per_appointment' value={{ minutes_per_appointment }}>
+                <input type="hidden" name='n_days' value={{ n_days }}>
+                <input type="hidden" name='start_date' value={{ start_date }}>
+                <input type="hidden" name='monday_start' value={{ monday_start }}>
+                <input type="hidden" name='monday_end' value={{ monday_end }}>
+                <input type="hidden" name='tuesday_start' value={{ tuesday_start }}>
+                <input type="hidden" name='tuesday_end' value={{ tuesday_end }}>
+                <input type="hidden" name='wednesday_start' value={{ wednesday_start }}>
+                <input type="hidden" name='wednesday_end' value={{ wednesday_end }}>
+                <input type="hidden" name='thursday_start' value={{ thursday_start }}>
+                <input type="hidden" name='thursday_end' value={{ thursday_end }}>
+                <input type="hidden" name='friday_start' value={{ friday_start }}>
+                <input type="hidden" name='friday_end' value={{ friday_end }}>
+                <input type="hidden" name='saturday_start' value={{ saturday_start }}>
+                <input type="hidden" name='saturday_end' value={{ saturday_end }}>
+                <input type="hidden" name='sunday_start' value={{ sunday_start }}>
+                <input type="hidden" name='sunday_end' value={{ sunday_end }}>
+            </div>
+            <br>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+    
+</div>
+
+
+{% endblock %}

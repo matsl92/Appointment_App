@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}schedule{% endblock %}
+
+
+{% block content %}
+    <div class='container'>
+        <h1>Book your appointment on {{ gap.date_and_time.date }} at {{ gap.date_and_time.time }}</h1>
+        <br>
+        {% if gap.is_limit == False %}
+            <p>Select a specific service</p>
+        {% else %}
+            <p>For another service select a different gap </p>
+        {% endif %}
+        <form action="success/" method='POST'>
+            {% csrf_token %}
+            <input type="hidden" name="pk" value={{ gap.pk }}>
+            <div class="form-row inner-container">
+                <div class="form-group col-md-4">
+                    <select class='form-control form-select' name="duration" id="duration">
+                        <option value="30">haircut</option>
+                        {% if gap.is_limit == False %}
+                            <option value="40">haircut and beard</option>
+                        {% endif %}       
+                    </select>
+                </div>   
+            </div>       
+            <br>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Appointments{% endblock %}
+
+
+{% block content %}
+<h1>{{ title }}</h1>
+<div class="column-2">
+    {% for appoint in list %}
+        <div class="appointment-label">{{ appoint.start }}</div>
+    {% endfor %}
+</div>
+
+{% endblock %}

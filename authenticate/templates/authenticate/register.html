@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/authenticate.css">
+    <title>Register</title>
+</head>
+    {% if form.errors %}
+        {% for error in errors %}
+            <p>error</p>
+        {% endfor %}
+    {% endif %}
+    <div class="loginBox">  
+        <div class="user-icon"></div>
+        <h3>Register here</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="inputBox"> 
+                <input id="uname" type="text" name="phone_number" placeholder="Phone number"> 
+            </div> 
+            <input id="sub-button" type="submit" name="" value="  Register  ">
+        </form> 
+        <a href="/login/">Login<br> </a>
+    </div>
+</body>
+</html>

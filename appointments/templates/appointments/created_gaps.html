@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Create gaps{% endblock %}
+
+
+{% block content %}
+
+
+<h1>Gaps created</h1>
+<div class="main-container">
+    {% for day in gap_pack %}
+        <div class="column">
+            {% for gap in day %}
+                <div class="row">
+                    {% if forloop.counter0 == 0 %}
+                        <p>{{ gap.day }}</p>
+                        <p>{{ gap.date }}</p>
+                    {% else %}
+                        <label for={{ gap.index }}>{{ gap }}</label>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <br>
+    <br>    
+</div>
+
+{% endblock %}

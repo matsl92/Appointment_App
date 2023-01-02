@@ -1,0 +1,88 @@
+* {
+    font-family: serif;
+}
+
+h1 {
+    color: rgb(30, 82, 82);
+    font-size: 22px;
+}
+
+.row, .row-2 {
+    display: block;
+}
+
+.column, .column-2 {
+    display: inline-block;
+}
+
+.main-container {
+    padding: 10px;
+}
+
+.column input {
+    display: none;
+}
+
+.inner-container {
+    display: grid;
+    place-items: center;
+}
+
+.inner-container input, .inner-container select {
+    min-width: 250px;
+}
+
+/* .column label, .column-2 label { */
+.column label {
+    background: linear-gradient(125deg, rgba(28,28,34,1) 74%, rgba(69,49,14,1) 100%, rgba(89,63,9,1) 100%);
+    -webkit-box-shadow: 12px 11px 4px -10px rgba(0,0,0,0.32);
+    -moz-box-shadow: 12px 11px 4px -10px rgba(0,0,0,0.32);
+    box-shadow: 12px 11px 4px -10px rgba(0,0,0,0.32);
+    display: flex;
+    margin: 6px 15px;
+    width: 100px;
+    height: 30px;
+    border-radius: 14px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+}
+
+.column label:hover {
+    background: rgb(19, 19, 19);
+    -webkit-box-shadow: 12px 11px 4px -10px rgba(0,0,0,0.32);
+    -moz-box-shadow: 12px 11px 4px -10px rgba(0,0,0,0.32);
+    box-shadow: 12px 11px 4px -10px rgba(0,0,0,0.32);
+}
+
+/* .column input[type='checkbox']:checked + label { */
+.column input[type='checkbox']:checked + label {
+    background: rgba(255, 255, 255, 0);
+    color: black;
+}
+
+@media (max-width: 324px) {
+    .inner-container input, .inner-container select {
+        min-width: 200px;
+    }
+}
+
+
+.appointment-label {
+    background-color: rgba(26, 25, 25, 0.7);
+    display: block;
+    margin: 6px;
+    padding-top: 12px;
+    width: 190px;
+    height: 50px;
+    border-radius: 14px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.column-2 {
+    display: grid;
+    place-items: center;
+}

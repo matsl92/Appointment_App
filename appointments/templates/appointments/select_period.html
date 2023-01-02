@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block title %}Select period{% endblock %}
+
+
+{% block content %}
+    <h1>Select date for the first day and number of days to display new optional gaps</h1>
+    <form action="" method='POST'>
+        {% csrf_token %}
+        <div class="form-row inner-container">
+            
+            
+            {% comment %} <div class="form-group col-md-4">
+                <label for="minutes_per_appointment">Minutes per gap</label>
+                {{ form.minutes_per_appointment }}
+            </div>
+            <br> {% endcomment %}
+
+            <input type="hidden" value='30' name='minutes_per_appointment'>
+
+            <br>
+            <div class="form-group col-md-4">
+                <label for="n_days">Number of days</label>
+                
+                <select class='form-control form-select' name="n_days" id="n_days" placeholder='Days to be desplayed'>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>    
+                </select>
+            </div>
+            <br>
+
+            {% comment %} <div class="form-group col-md-4">
+                <label for="start_date">Start day</label>
+                {{ form.start_date }}
+            </div>
+            <br> {% endcomment %}
+
+            <div class="form-group col-md-4">
+                <label for="start_date">Start date</label>
+                <input type="date" id='start_date' name='start_date' class='form-control' min={{ min }} value={{ value }}>
+            </div>
+            <br>
+
+            <div class="form-group col-md-4">
+                <label for="monday_start">Monday start</label>
+                {{ form.monday_start }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="monday_end">Monday end</label>
+                {{ form.monday_end }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="tuesday_start">Tuesday start</label>
+                {{ form.tuesday_start }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="tuesday_end">Tuesday end</label>
+                {{ form.tuesday_end }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="wednesday_start">Wednesday start</label>
+                {{ form.wednesday_start }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="wednesday_end">Wednesday end</label>
+                {{ form.wednesday_end }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="thursday_start">Thursday start</label>
+                {{ form.thursday_start }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="thursday_end">Thursday end</label>
+                {{ form.thursday_end }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="friday_start">Friday start</label>
+                {{ form.friday_start }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="friday_end">Friday end</label>
+                {{ form.friday_end }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="saturday_start">Saturday start</label>
+                {{ form.saturday_start }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="saturday_end">Saturday end</label>
+                {{ form.saturday_end }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="sunday_start">Sunday start</label>
+                {{ form.sunday_start }}
+            </div>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="sunday_end">Sunday end</label>
+                {{ form.sunday_end }}
+            </div>
+            <br>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Display optional gaps">
+    </form>
+{% endblock %}

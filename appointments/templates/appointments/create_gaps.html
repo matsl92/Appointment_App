@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Create gaps{% endblock %}
+
+
+{% block content %}
+
+
+<h1>Select the gaps you don't want to include</h1>
+    <div class="main-container">
+        <form action="" method='POST' id='gap_index' class='form'>
+            {% csrf_token %}
+            {% for day in semigap_pack %}
+                <div class="column">
+                    {% for semigap in day %}
+                        <div class="row">
+                            {% if forloop.counter0 == 0 %}
+                                <div class='date-label'>
+                                    <p>{{ semigap.day }}</p>
+                                    <p>{{ semigap.date }}</p>
+                                </div>
+                            {% else %}
+                                <input type="checkbox" name='indexes' id="{{ semigap.index }}" value="{{ semigap.index }}">
+                                <label for={{ semigap.index }}>{{ semigap }}</label>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <br>
+            <br>
+            <div>
+                <input type="hidden" name='minutes_per_appointment' value={{ minutes_per_appointment }}>
+                <input type="hidden" name='n_days' value={{ n_days }}>
+                <input type="hidden" name='start_date' value={{ start_date }}>
+                <input type="hidden" name='monday_start' value={{ monday_start }}>
+                <input type="hidden" name='monday_end' value={{ monday_end }}>
+                <input type="hidden" name='tuesday_start' value={{ tuesday_start }}>
+                <input type="hidden" name='tuesday_end' value={{ tuesday_end }}>
+                <input type="hidden" name='wednesday_start' value={{ wednesday_start }}>
+                <input type="hidden" name='wednesday_end' value={{ wednesday_end }}>
+                <input type="hidden" name='thursday_start' value={{ thursday_start }}>
+                <input type="hidden" name='thursday_end' value={{ thursday_end }}>
+                <input type="hidden" name='friday_start' value={{ friday_start }}>
+                <input type="hidden" name='friday_end' value={{ friday_end }}>
+                <input type="hidden" name='saturday_start' value={{ saturday_start }}>
+                <input type="hidden" name='saturday_end' value={{ saturday_end }}>
+                <input type="hidden" name='sunday_start' value={{ sunday_start }}>
+                <input type="hidden" name='sunday_end' value={{ sunday_end }}>
+                <input type="hidden" name='option' value={{ option }}>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Create gaps">
+        </form>
+        
+    </div>
+
+{% endblock %}

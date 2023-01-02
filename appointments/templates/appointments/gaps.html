@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}New gaps{% endblock %}
+
+
+{% block content %}
+
+    <h1>{{ title }}</h1>
+    <div class="main-container">
+        <form action="" method='POST' id='gap_index' class='form'>
+            {% csrf_token %}
+            {% for day in gap_pack %}
+                <div class="column">
+                    {% for gap in day %}
+                        <div class="row">
+                            {% if forloop.counter0 == 0 %}
+                                <p>{{ gap.day }}</p>
+                                <p>{{ gap.date }}</p>
+                            {% else %}
+                                <input type="submit" name="pk" id="{{ gap.pk }}" value="{{ gap.pk }}">
+                                <label for="{{ gap.pk }}">{{ gap }}</label>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </form>  
+    </div>
+
+{% endblock %}
