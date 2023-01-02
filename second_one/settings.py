@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC' # America/Cancun makes the new seved gaps look 5 hours later in the admin page
+TIME_ZONE = 'America/Cancun' # makes the new seved gaps look 5 hours later in the admin page
 
 USE_I18N = True
 
