@@ -41,8 +41,11 @@ share/python-wheels/
 MANIFEST
 
 
-
+**/__pycache__/
+*appointments/__pycache__/admin.cpython-310.pyc
 appointments/__pycache__/admin.cpython-310.pyc
+/__pycache__/
+second_one/__pycache__/settings.cpython-310.pyc
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
