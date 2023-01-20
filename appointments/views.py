@@ -588,11 +588,6 @@ def success(request):
         gap = Gap.objects.get(pk=base_gap_pk+i)
         if gap in available_gaps:
             appointment.gap_set.add(gap)
-            if i == 0:
-                appointment.start = gap.date_and_time
-            elif i == n_gaps-1:
-                appointment.end = gap.date_and_time + gap.time_period
-            appointment.save()
         else:
             appointment.delete()
             print('Not all gaps were available')
@@ -603,14 +598,36 @@ def success(request):
 
 @login_required()
 def appointments(request):
-    appoints = Appointment.objects.filter(user=request.user).filter(end__gte=make_aware(datetime.today())).order_by('start')
-    context = {'list': appoints, 'title': 'Your appointments'}
+    appoints = list(Appointment.objects.filter(user=request.user))
+    for appoint in appoints:
+        try:
+            if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
+                appoints.remove(appoint)
+        except:
+            appoints.remove(appoint)
+    try:
+        appoint_beginnings = [appoint.gap_set.first() for appoint in appoints]
+        appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
+    except:
+        appoint_beginnings = []
+    context = {'list': appoint_beginnings, 'title': 'Your appointments'}
     return render(request, 'appointments/appointments.html', context)
 
 @login_required()
 def outlook(request):
-    appoints = Appointment.objects.filter(end__gte=make_aware(datetime.today())).order_by('start')
-    context = {'list': appoints, 'title': 'Upcoming appointments'}
+    appoints = list(Appointment.objects.all())
+    for appoint in appoints:
+        try:
+            if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
+                appoints.remove(appoint)
+        except:
+            appoints.remove(appoint)
+    try:
+        appoint_beginnings = [appoint.gap_set.first() for appoint in appoints]
+        appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
+    except:
+        appoint_beginnings = []
+    context = {'list': appoint_beginnings, 'title': 'Upcoming appointments'}
     return render(request, 'appointments/appointments.html', context)
 
 @login_required()

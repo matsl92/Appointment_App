@@ -49,6 +49,7 @@ def register_user(request):
             password2 = password_generator(phone_number)
             post = {'username': username, 'phone_number': phone_number, 'password1': password1, 'password2': password2}
             form_2 = NewUserCreationForm(post)
+            print(form_2)
             if form_2.is_valid():
                 form_2.save()
                 username = form_2.cleaned_data['username']
@@ -65,3 +66,32 @@ def register_user(request):
         form = PhoneValForm()
         context = {'form': form}
         return render(request, 'authenticate/register.html', context)
+
+# def register_user(request):
+    if request.method == 'POST':
+        def password_generator(username):
+            dic = {'1': 'a', '2': 'b', '3': 'c', '4': 'd', '5': 'e', '6': 'f', '7': 'g', '8': 'h', '9': 'i', '0': 'j', }
+            password = []
+            for i in str(username):
+                password.append(dic[i])
+            return "".join(password)
+        username = request.POST['phone_number']
+        password1 = password_generator(username)
+        password2 = password_generator(username)
+        post = {'username': username, 'password1': password1, 'password2': password2}
+        form = UserCreationForm(post)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, ('Registration successful'))
+            return redirect('appointments:home')
+        else:
+            print('form is not valid')
+    else:
+        form = UserCreationForm()
+            
+    context = {'form': form}
+    return render(request, 'authenticate/register.html', context)

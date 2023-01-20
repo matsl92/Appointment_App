@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-##occ^2$k5)s#oxyp6n)g-8km5oqh)!k9zf7v9j9#(+0su+ovq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Bogota' # makes the new seved gaps look 5 hours later in the admin page
+TIME_ZONE = 'UTC' # America/Cancun makes the new seved gaps look 5 hours later in the admin page
 
 USE_I18N = True
 

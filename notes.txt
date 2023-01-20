@@ -13,7 +13,10 @@ from django.contrib.auth.models import User and customize it extending the model
 It seems like when the first user appointment lasts 40 min, no appointment will be displayed
 
 
-
+gaps {
+    get    new_gaps.html        -> gaps.html
+    post   new_schedule.html    -> schedule.html
+}
 
 
 

@@ -1,20 +1,21 @@
 from django.db import models
 import datetime
+from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 from authenticate.models import NewUser
 
 class Appointment(models.Model):
     user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
-    start = models.DateTimeField(blank=True, null=True)
-    end = models.DateTimeField(blank=True, null=True)
     
     def __str__(self):
-        return str(self.user)
+        return str(self.pk)
   
 class Gap(models.Model):
     date_and_time = models.DateTimeField(unique=True)
     time_period = models.DurationField()
     appointment = models.ForeignKey(Appointment, on_delete=models.SET_DEFAULT, default=None, null=True)
     is_limit = models.BooleanField(default=False)
+    
     
     def __str__(self):
         return str(self.date_and_time.time().strftime('%I:%M %p'))
