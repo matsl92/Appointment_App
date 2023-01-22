@@ -49,7 +49,6 @@ def register_user(request):
             password2 = password_generator(phone_number)
             post = {'username': username, 'phone_number': phone_number, 'password1': password1, 'password2': password2}
             form_2 = NewUserCreationForm(post)
-            print(form_2)
             if form_2.is_valid():
                 form_2.save()
                 username = form_2.cleaned_data['username']

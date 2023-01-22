@@ -6,6 +6,7 @@ class NewUser(AbstractUser):
     phone_number = PhoneNumberField(unique=True)
     occupation = models.CharField(max_length=50, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
+    points = models.IntegerField(default=0)
     REQUIRED_FIELDS = ['email', 'phone_number']
     
 class PhoneVal(models.Model):
