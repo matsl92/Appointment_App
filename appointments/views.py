@@ -97,7 +97,8 @@ gap_duration = timedelta(minutes=30) # Can be modified in select_period.html, wh
 
 @login_required()
 def home(request):
-    context = {}
+    form = NewUserForm(instance=request.user)
+    context = {'user': request.user, 'form': form}
     return render(request, 'appointments/home.html', context)
 
 @login_required()

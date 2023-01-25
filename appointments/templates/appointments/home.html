@@ -4,7 +4,51 @@
 
 {% block content %}
 
+<div id='home-container'>
+    <section class='home-section' id='user-profile'>
+        <div class='icon'></div>
+        <div class='info'>
+            <div class='form-row'>
+                <p>Name:</p>
+                <p>{{ user.first_name }}</p>
+                <p>{{ user.last_name }}</p>
+            </div>
+            <div class='form-row'>
+                <p>Occupation:</p>
+                <p>{{ user.occupation }}</p>
+            </div>
+            <div class='form-row'>
+                <p>Email:</p>
+                <p>{{ user.email }}</p>
+            </div>
+            <div class='form-row'>
+                <p>Birth:</p>
+                <p>{{ user.date_of_birth }}</p>
+            </div>
+            <div class='form-row'>
+                <p>Points:</p>
+                <p>{{ user.points }}</p>
+            </div>
+        </div>
+        <button class="btn btn-primary">
+            <span>Editar</span>
+        </button>
+    </section>
+    
+    <section class='home-section' id='carousel'>
+    
+    </section>
+    
+    <section class='home-section' id='buttons'>
+        <button class='home-button'>
+            <span>Agendar cita</span>
+        </button>
+        <button class='home-button'>
+            <span>Mis citas</span>
+        </button>
+    </section>
+</div>
 
-<h1>You are at home right now</h1>
+
 
 {% endblock %}

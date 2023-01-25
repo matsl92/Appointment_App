@@ -86,3 +86,90 @@ h1 {
     display: grid;
     place-items: center;
 }
+
+
+
+/* home */
+
+#home-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.home-section {
+    display: block;
+    margin: 7px;
+    /* background-color: beige; */
+    height: 45vh;
+}
+
+/* profile */
+
+#user-profile {
+    width: 20vw;
+    display: grid;
+    place-items: center;
+    background-color: beige;
+}
+
+#user-profile>.icon {
+    display: block;
+    height: 12vh;
+    width: 12vh;
+    background-image: url(./media/user_icon3.png);
+    background-size: cover;
+}
+
+.info-button {
+    display: block;
+    height: 3vh;
+    width: 4vw;
+}
+
+/* .info-button>span {
+    color: white;
+} */
+
+.form-row>p {
+    display: inline;
+}
+
+/* carousel */
+
+#carousel {
+    width: 30vw;
+    background-color: beige;
+}
+
+/* buttons */
+
+#buttons {
+    width: 20vw;
+    display: grid;
+    place-items: center;
+}
+
+.home-button {
+    display: block;
+    height: 15vh;
+    width: 15vw;
+    margin: 1vh;
+    border-radius: 10px;
+    border: 0ch;
+    background: rgb(30,82,82,1);
+    background: linear-gradient(125deg, rgba(30,82,82,1) 0%, rgba(1,1,0,1) 100%);
+    
+}
+
+.home-section>button>span {
+    font-size: 25px;
+    color: white;
+}
+
+.home-section>.home-button:hover {
+    background: rgb(42, 114, 114);
+    background: linear-gradient(125deg, rgba(42, 114, 114) 0%, rgba(1,1,0,1) 100%);
+}
+
+
+
