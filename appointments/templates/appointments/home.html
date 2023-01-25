@@ -54,8 +54,8 @@
                 <div class="swiper-slide">Slide 8</div>
                 <div class="swiper-slide">Slide 9</div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            {% comment %} <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div> {% endcomment %}
             <div class="swiper-pagination"></div>
         </div>
     </section>
@@ -74,7 +74,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
 <!-- Initialize Swiper -->
-<script type="text/javascript" src={% static "js/carousel.js" %}></script>
+<script type="text/javascript" src={% static "js/carousel.js"%}></script>
 
 
 {% endblock %}
