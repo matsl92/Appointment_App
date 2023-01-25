@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Home{% endblock %}
 
 
 {% block content %}
+
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<link rel="stylesheet" href={% static "css/carousel.css" %}>
 
 <div id='home-container'>
     <section class='home-section' id='user-profile'>
@@ -53,11 +58,6 @@
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
         </div>
-        <!-- Swiper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
-        <!-- Initialize Swiper -->
-        <script type='text/javascript' src='../../static/js/carousel.js'></script>
     </section>
     
     <section class='home-section' id='buttons'>
@@ -70,6 +70,11 @@
     </section>
 </div>
 
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script type="text/javascript" src={% static "js/carousel.js" %}></script>
 
 
 {% endblock %}
