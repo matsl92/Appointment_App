@@ -10,15 +10,14 @@ all integer items, and so on so that messages may appear when some requirements 
 Need to delete CustomUser model and reference django User model in the other models
 from django.contrib.auth.models import User and customize it extending the model if necessary.
 
-It seems like when the first user appointment lasts 40 min, no appointment will be displayed
+
+There are some issues with login and register template translations
 
 
-gaps {
-    get    new_gaps.html        -> gaps.html
-    post   new_schedule.html    -> schedule.html
-}
+Messages workin on authenticate app, translation for them are missing though
+All templates are able to display messages, now the messages have to be provided by the views in the appointment app
 
-
+Register should be able to login in some cases
 
 
 navbar 

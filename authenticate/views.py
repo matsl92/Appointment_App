@@ -9,7 +9,7 @@ from .forms import NewUserCreationForm, NewUserChangeForm, PhoneValForm
 def login_user(request):
     if request.method == 'POST':
         def password_generator(username):
-            dic = {'1': 'a', '2': 'b', '3': 'c', '4': 'd', '5': 'e', '6': 'f', '7': 'g', '8': 'h', '9': 'i', '0': 'j', }
+            dic = {'1': 'a', '2': 'b', '3': 'c', '4': 'd', '5': 'e', '6': 'f', '7': 'g', '8': 'h', '9': 'i', '0': 'j', ' ': 'k'}
             password = []
             for i in str(username):
                 password.append(dic[i])
@@ -19,9 +19,11 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, ('You have logged in successfully'))
             return redirect('appointments:home')
         else:
             print("User is None")
+            messages.error(request, 'Password did not match phone number')
             return redirect('authenticate:login')
     else:
         context = {}
@@ -38,7 +40,7 @@ def register_user(request):
         form = PhoneValForm(request.POST)
         if form.is_valid():
             def password_generator(username):
-                dic = {'1': 'a', '2': 'b', '3': 'c', '4': 'd', '5': 'e', '6': 'f', '7': 'g', '8': 'h', '9': 'i', '0': 'j', }
+                dic = {'1': 'a', '2': 'b', '3': 'c', '4': 'd', '5': 'e', '6': 'f', '7': 'g', '8': 'h', '9': 'i', '0': 'j', ' ': 'k'}
                 password = []
                 for i in str(username):
                     password.append(dic[i])
@@ -58,9 +60,12 @@ def register_user(request):
                 messages.success(request, ('Registration successful'))
                 return redirect('appointments:home')
             else:
-                return(HttpResponse('Phone number is not valid. Please enter a phone number that is not registered'))
+                print("User is not None")
+                messages.error(request, (form_2.errors))
+                return redirect('authenticate:register')
         else:
-            return HttpResponse('Invalid phone number')
+            messages.error(request, ('Invalid phone number, enter a +10 digit number with no spaces in between'))
+            return redirect('authenticate:register')
     else:
         form = PhoneValForm()
         context = {'form': form}
