@@ -10,6 +10,7 @@ from .forms import WeekForm
 from authenticate.forms import NewUserForm
 from django.urls import reverse
 from urllib.parse import urlencode
+from django.utils.translation import gettext as _
 
 
 # Classes, functions and variables
@@ -98,7 +99,7 @@ gap_duration = timedelta(minutes=30) # Can be modified in select_period.html, wh
 @login_required()
 def home(request):
     form = NewUserForm(instance=request.user)
-    context = {'user': request.user, 'form': form}
+    context = {'user': request.user, 'form': form, 'message': _('first text to be translated')}
     return render(request, 'appointments/home.html', context)
 
 @login_required()

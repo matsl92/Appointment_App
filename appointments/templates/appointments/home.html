@@ -13,8 +13,11 @@
     <section class='home-section' id='user-profile'>
         <div class='icon'></div>
         <div class='info'>
+            <p>{{ message }}</p>
             <div class='form-row'>
+                {% comment %} <p>{% trans 'Name' %}:</p> {% endcomment %}
                 <p>Name:</p>
+                
                 <p>{{ user.first_name }}</p>
                 <p>{{ user.last_name }}</p>
             </div>
