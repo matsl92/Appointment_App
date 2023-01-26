@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-26 12:19-0500\n"
+"POT-Creation-Date: 2023-01-26 14:17-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\appointments\templates\appointments\appointments.html:3
+#: .\appointments\templates\base.html:28
+msgid "Appointments"
+msgstr "Mis citas"
+
+#: .\appointments\templates\appointments\create_gaps.html:3
+#: .\appointments\templates\appointments\create_gaps.html:52
+#: .\appointments\templates\base.html:23
+msgid "Create gaps"
+msgstr "Añadir"
+
+#: .\appointments\templates\appointments\create_gaps.html:9
+msgid "Select the gaps you don't want to include"
+msgstr "Seleccione los periodos que no quiere incluir"
 
 #: .\appointments\templates\appointments\home.html:4
 msgid "Home"
@@ -54,13 +69,85 @@ msgstr "Agendar"
 msgid "Appoints"
 msgstr "Mis citas"
 
+#: .\appointments\templates\appointments\select_period.html:3
+msgid "Select period"
+msgstr "Seleccionar periodo"
+
+#: .\appointments\templates\appointments\select_period.html:7
+msgid "Select date for the first day and number of days to display new optional gaps"
+msgstr "Seleccione la fecha del primer día y el número de días en adelante que desea editar"
+
+#: .\appointments\templates\appointments\select_period.html:24
+msgid "Number of days"
+msgstr "Número de días"
+
+#: .\appointments\templates\appointments\select_period.html:46
+msgid "Start date"
+msgstr "Primera fecha"
+
+#: .\appointments\templates\appointments\select_period.html:52
+msgid "Monday start"
+msgstr "Inicio del lunes"
+
+#: .\appointments\templates\appointments\select_period.html:57
+msgid "Monday end"
+msgstr "Final del lunes"
+
+#: .\appointments\templates\appointments\select_period.html:62
+msgid "Tuesday start"
+msgstr "Inicio del martes"
+
+#: .\appointments\templates\appointments\select_period.html:67
+msgid "Tuesday end"
+msgstr "Final del martes"
+
+#: .\appointments\templates\appointments\select_period.html:72
+msgid "Wednesday start"
+msgstr "Inicio del miércoles"
+
+#: .\appointments\templates\appointments\select_period.html:77
+msgid "Wednesday end"
+msgstr "Final del miércoles"
+
+#: .\appointments\templates\appointments\select_period.html:82
+msgid "Thursday start"
+msgstr "Inicio del jueves"
+
+#: .\appointments\templates\appointments\select_period.html:87
+msgid "Thursday end"
+msgstr "Final del jueves"
+
+#: .\appointments\templates\appointments\select_period.html:92
+msgid "Friday start"
+msgstr "Inicio del viernes"
+
+#: .\appointments\templates\appointments\select_period.html:97
+msgid "Friday end"
+msgstr "Final del viernes"
+
+#: .\appointments\templates\appointments\select_period.html:102
+msgid "Saturday start"
+msgstr "Inicio del sábado"
+
+#: .\appointments\templates\appointments\select_period.html:107
+msgid "Saturday end"
+msgstr "Final del sábado"
+
+#: .\appointments\templates\appointments\select_period.html:112
+msgid "Sunday start"
+msgstr "Inicio del domingo"
+
+#: .\appointments\templates\appointments\select_period.html:117
+msgid "Sunday end"
+msgstr "final del domingo"
+
+#: .\appointments\templates\appointments\select_period.html:123
+msgid "Display optional gaps"
+msgstr "Mostrar periodos opcionales"
+
 #: .\appointments\templates\base.html:18 .\appointments\templates\base.html:47
 msgid "BarberShop"
 msgstr "Barbería"
-
-#: .\appointments\templates\base.html:23
-msgid "Create gaps"
-msgstr "Añadir"
 
 #: .\appointments\templates\base.html:25
 msgid "Outlook"
@@ -69,10 +156,6 @@ msgstr "Panorama"
 #: .\appointments\templates\base.html:27
 msgid "Book"
 msgstr "Agendar"
-
-#: .\appointments\templates\base.html:28
-msgid "Appointments"
-msgstr "Mis citas"
 
 #: .\appointments\templates\base.html:29
 msgid "Personal info"
@@ -85,6 +168,10 @@ msgstr "Cerrar sesión"
 #: .\appointments\views.py:102
 msgid "first text to be translated"
 msgstr "Primer texto para traducir"
+
+#: .\appointments\views.py:615
+msgid "My appointments"
+msgstr "Mis citas"
 
 #: .\second_one\settings.py:135
 msgid "English"

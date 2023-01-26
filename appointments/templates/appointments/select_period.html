@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}Select period{% endblock %}
+{% load i18n %}
+{% block title %}{% trans 'Select period' %}{% endblock %}
 
 
 {% block content %}
-    <h1>Select date for the first day and number of days to display new optional gaps</h1>
+    <h1>{% trans 'Select date for the first day and number of days to display new optional gaps' %}</h1>
     <form action="" method='POST'>
         {% csrf_token %}
         <div class="form-row inner-container">
             
             
             {% comment %} <div class="form-group col-md-4">
-                <label for="minutes_per_appointment">Minutes per gap</label>
+                <label for="minutes_per_appointment">{% trans 'Minutes per gap' %}</label>
                 {{ form.minutes_per_appointment }}
             </div>
             <br> {% endcomment %}
@@ -19,7 +20,7 @@
 
             <br>
             <div class="form-group col-md-4">
-                <label for="n_days">Number of days</label>
+                <label for="n_days">{% trans 'Number of days' %}</label>
                 
                 <select class='form-control form-select' name="n_days" id="n_days" placeholder='Days to be desplayed'>
                     <option value="7">7</option>
@@ -34,89 +35,89 @@
             <br>
 
             {% comment %} <div class="form-group col-md-4">
-                <label for="start_date">Start day</label>
+                <label for="start_date">{% trans 'Start day' %}</label>
                 {{ form.start_date }}
             </div>
             <br> {% endcomment %}
 
             <div class="form-group col-md-4">
-                <label for="start_date">Start date</label>
+                <label for="start_date">{% trans 'Start date' %}</label>
                 <input type="date" id='start_date' name='start_date' class='form-control' min={{ min }} value={{ value }}>
             </div>
             <br>
 
             <div class="form-group col-md-4">
-                <label for="monday_start">Monday start</label>
+                <label for="monday_start">{% trans 'Monday start' %}</label>
                 {{ form.monday_start }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="monday_end">Monday end</label>
+                <label for="monday_end">{% trans 'Monday end' %}</label>
                 {{ form.monday_end }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="tuesday_start">Tuesday start</label>
+                <label for="tuesday_start">{% trans 'Tuesday start' %}</label>
                 {{ form.tuesday_start }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="tuesday_end">Tuesday end</label>
+                <label for="tuesday_end">{% trans 'Tuesday end' %}</label>
                 {{ form.tuesday_end }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="wednesday_start">Wednesday start</label>
+                <label for="wednesday_start">{% trans 'Wednesday start' %}</label>
                 {{ form.wednesday_start }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="wednesday_end">Wednesday end</label>
+                <label for="wednesday_end">{% trans 'Wednesday end' %}</label>
                 {{ form.wednesday_end }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="thursday_start">Thursday start</label>
+                <label for="thursday_start">{% trans 'Thursday start' %}</label>
                 {{ form.thursday_start }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="thursday_end">Thursday end</label>
+                <label for="thursday_end">{% trans 'Thursday end' %}</label>
                 {{ form.thursday_end }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="friday_start">Friday start</label>
+                <label for="friday_start">{% trans 'Friday start' %}</label>
                 {{ form.friday_start }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="friday_end">Friday end</label>
+                <label for="friday_end">{% trans 'Friday end' %}</label>
                 {{ form.friday_end }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="saturday_start">Saturday start</label>
+                <label for="saturday_start">{% trans 'Saturday start' %}</label>
                 {{ form.saturday_start }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="saturday_end">Saturday end</label>
+                <label for="saturday_end">{% trans 'Saturday end' %}</label>
                 {{ form.saturday_end }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="sunday_start">Sunday start</label>
+                <label for="sunday_start">{% trans 'Sunday start' %}</label>
                 {{ form.sunday_start }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="sunday_end">Sunday end</label>
+                <label for="sunday_end">{% trans 'Sunday end' %}</label>
                 {{ form.sunday_end }}
             </div>
             <br>
         </div>
         <br>
-        <input type="submit" class="btn btn-primary" value="Display optional gaps">
+        <input type="submit" class="btn btn-primary" value="{% trans 'Display optional gaps' %}">
     </form>
 {% endblock %}

@@ -612,7 +612,7 @@ def appointments(request):
         appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
     except:
         appoint_beginnings = []
-    context = {'list': appoint_beginnings, 'title': 'Your appointments'}
+    context = {'list': appoint_beginnings, 'title': _('My appointments')}
     return render(request, 'appointments/appointments.html', context)
 
 @login_required()

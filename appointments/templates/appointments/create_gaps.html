@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Create gaps{% endblock %}
+{% load i18n %}
+{% block title %}{% trans 'Create gaps' %}{% endblock %}
 
 
 {% block content %}
 
 
-<h1>Select the gaps you don't want to include</h1>
+<h1>{% trans "Select the gaps you don't want to include" %}</h1>
     <div class="main-container">
         <form action="" method='POST' id='gap_index' class='form'>
             {% csrf_token %}
@@ -48,7 +49,7 @@
                 <input type="hidden" name='sunday_end' value={{ sunday_end }}>
                 <input type="hidden" name='option' value={{ option }}>
             </div>
-            <input type="submit" class="btn btn-primary" value="Create gaps">
+            <input type="submit" class="btn btn-primary" value={% trans 'Create gaps' %}>
         </form>
         
     </div>
