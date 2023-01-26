@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Home{% endblock %}
+{% load i18n %}
+{% block title %}{% trans 'Home' %}{% endblock %}
 
 
 {% block content %}
@@ -15,30 +16,28 @@
         <div class='info'>
             <p>{{ message }}</p>
             <div class='form-row'>
-                {% comment %} <p>{% trans 'Name' %}:</p> {% endcomment %}
-                <p>Name:</p>
-                
+                <p>{% trans 'Name' %}:</p>
                 <p>{{ user.first_name }}</p>
                 <p>{{ user.last_name }}</p>
             </div>
             <div class='form-row'>
-                <p>Occupation:</p>
+                <p>{% trans 'Occupation' %}:</p>
                 <p>{{ user.occupation }}</p>
             </div>
             <div class='form-row'>
-                <p>Email:</p>
+                <p>{% trans 'Email' %}:</p>
                 <p>{{ user.email }}</p>
             </div>
             <div class='form-row'>
-                <p>Birth:</p>
+                <p>{% trans 'Birth' %}:</p>
                 <p>{{ user.date_of_birth }}</p>
             </div>
             <div class='form-row'>
-                <p>Points:</p>
+                <p>{% trans 'Points' %}:</p>
                 <p>{{ user.points }}</p>
             </div>
         </div>
-        <a href="/personal_info/" class="info-button">Edit</a>
+        <a href="/personal_info/" class="info-button">{% trans 'Edit' %}</a>
     </section>
     
     <section class='home-section' id='carousel'>
@@ -57,8 +56,8 @@
     </section>
     
     <section class='home-section' id='buttons'>
-        <a href="/gaps/" class="home-button">Book now</a>
-        <a href="/appointments/" class="home-button">Appoints</a>
+        <a href="/gaps/" class="home-button">{% trans 'Book now' %}</a>
+        <a href="/appointments/" class="home-button">{% trans 'Appoints' %}</a>
     </section>
 </div>
 
