@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/authenticate.css">
-    <title>Register</title>
+    <title>{% trans 'Register' %}</title>
 </head>
     {% if form.errors %}
         {% for error in errors %}
@@ -14,15 +15,15 @@
     {% endif %}
     <div class="loginBox">  
         <div class="user-icon"></div>
-        <h3>Register here</h3>
+        <h3>{% trans 'Register here' %}</h3>
         <form action="" method="POST">
             {% csrf_token %}
             <div class="inputBox"> 
-                <input id="uname" type="text" name="phone_number" placeholder="Phone number"> 
+                <input id="uname" type="text" name="phone_number" placeholder={% trans 'Phone number' %}> 
             </div> 
-            <input id="sub-button" type="submit" name="" value="  Register  ">
+            <input id="sub-button" type="submit" name="" value={% trans 'Register' %}>
         </form> 
-        <a href="/login/">Login<br> </a>
+        <a href="/login/">{% trans 'Login' %}<br> </a>
     </div>
 </body>
 </html>

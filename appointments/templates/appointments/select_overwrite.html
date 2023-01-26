@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
-{% block title %}Select overwrite{% endblock %}
+{% load i18n %}
+{% block title %}{% trans 'Select action' %}{% endblock %}
 
 {% block content %}
-<h1>There are some gaps already created for {{ start_date_name }}</h1>
+<h1>{% trans 'There are some gaps already created for' %} {{ start_date_name }}</h1>
 <div class='container'>
     <form action="/create_gaps/" method='GET'>
         {% csrf_token %}
         <div class="form-row inner-container">
             <div class="form-group col-md-4">
-                <label for="option">Select an action</label>
-                <select class='form-control form-select' name="option" id="option" placeholder='Days to be desplayed'>
-                    <option value="0">Select a different start day</option>    
-                    <option value="2">Edit available gaps and keep the scheduled ones</option>
-                    <option value="3">Overwrite and cancel gaps for selected days</option>
+                <label for="option">{% trans 'Select an action' %}</label>
+                <select class='form-control form-select' name="option" id="option">
+                    <option value="0">{% trans 'Select a different start day' %}</option>    
+                    <option value="2">{% trans 'Edit available gaps and keep the scheduled ones' %}</option>
+                    <option value="3">{% trans 'Overwrite and cancel gaps for selected days' %}</option>
                 </select>
             </div>
             <div>
@@ -37,7 +38,7 @@
             <br>
         </div>
         <br>
-        <input type="submit" class="btn btn-primary" value="Submit">
+        <input type="submit" class="btn btn-primary" value={% trans 'Submit' %}>
     </form>
     
 </div>

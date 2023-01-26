@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-26 14:57-0500\n"
+"POT-Creation-Date: 2023-01-26 15:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,17 +102,73 @@ msgid "Date of birth"
 msgstr "Fecha de nacimiento"
 
 #: .\appointments\templates\appointments\personal_info.html:39
+#: .\appointments\templates\appointments\schedule.html:29
+#: .\appointments\templates\appointments\select_overwrite.html:41
 msgid "Submit"
 msgstr "Enviar"
+
+#: .\appointments\templates\appointments\schedule.html:3
+msgid "Schedule"
+msgstr "Agendar"
+
+#: .\appointments\templates\appointments\schedule.html:8
+msgid "Book your appointment on"
+msgstr "Agendar cita el"
+
+#: .\appointments\templates\appointments\schedule.html:8
+msgid "at"
+msgstr "a las"
+
+#: .\appointments\templates\appointments\schedule.html:11
+msgid "Select a servise"
+msgstr "Seleccione un servivio"
+
+#: .\appointments\templates\appointments\schedule.html:13
+msgid "For a different service select a different gap"
+msgstr "Para otro servicio seleccione otra hora"
+
+#: .\appointments\templates\appointments\schedule.html:21
+msgid "Haircut"
+msgstr "Corte de cabello"
+
+#: .\appointments\templates\appointments\schedule.html:23
+msgid "Haircut and beard"
+msgstr "Corte de cabello y barba"
+
+#: .\appointments\templates\appointments\select_overwrite.html:3
+msgid "Select action"
+msgstr "Seleccionar acción"
+
+#: .\appointments\templates\appointments\select_overwrite.html:6
+msgid "There are some gaps already created for"
+msgstr "Ya hay disponibilidad para"
+
+#: .\appointments\templates\appointments\select_overwrite.html:12
+msgid "Select an action"
+msgstr "Seleccione una acción"
+
+#: .\appointments\templates\appointments\select_overwrite.html:14
+msgid "Select a different start day"
+msgstr "Seleccionar otra fecha de inicio"
+
+#: .\appointments\templates\appointments\select_overwrite.html:15
+msgid "Edit available gaps and keep the scheduled ones"
+msgstr "Editar los periodos disponibles y mantener los ya agendados"
+
+#: .\appointments\templates\appointments\select_overwrite.html:16
+msgid "Overwrite and cancel gaps for selected days"
+msgstr ""
+"Sobre escribir la disponibilidad y cancelar citas agendadas en estos periodos"
 
 #: .\appointments\templates\appointments\select_period.html:3
 msgid "Select period"
 msgstr "Seleccione el periodo"
 
 #: .\appointments\templates\appointments\select_period.html:7
-msgid "Select date for the first day and number of days to display new optional gaps"
-msgstr "Seleccione la fecha del primer día y el número de días en adelante que desea "
-"editar"
+msgid ""
+"Select date for the first day and number of days to display new optional gaps"
+msgstr ""
+"Seleccione la fecha del primer día y el número de días en adelante que desea "
 
 #: .\appointments\templates\appointments\select_period.html:24
 msgid "Number of days"
@@ -202,9 +258,42 @@ msgstr "Cerrar sesión"
 msgid "first text to be translated"
 msgstr "Primer texto para traducir"
 
+#: .\appointments\views.py:543
+msgid "Available timeslots"
+msgstr "Periodos disponibles"
+
 #: .\appointments\views.py:615
 msgid "My appointments"
 msgstr "Mis citas"
+
+#: .\appointments\views.py:632
+msgid "Upcoming appointments"
+msgstr "Próximas citas"
+
+#: .\authenticate\templates\authenticate\login.html:10
+#: .\authenticate\templates\authenticate\login.html:22
+#: .\authenticate\templates\authenticate\register.html:26
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: .\authenticate\templates\authenticate\login.html:16
+msgid "Sign in here"
+msgstr "Inicie sesión aquí"
+
+#: .\authenticate\templates\authenticate\login.html:20
+#: .\authenticate\templates\authenticate\register.html:22
+msgid "Phone number"
+msgstr "Número_de_celular"
+
+#: .\authenticate\templates\authenticate\login.html:24
+#: .\authenticate\templates\authenticate\register.html:9
+#: .\authenticate\templates\authenticate\register.html:24
+msgid "Register"
+msgstr "Registrarse"
+
+#: .\authenticate\templates\authenticate\register.html:18
+msgid "Register here"
+msgstr "Regístrese aquí"
 
 #: .\second_one\settings.py:135
 msgid "English"

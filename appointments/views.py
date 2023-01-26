@@ -540,7 +540,7 @@ def gaps(request):
             for day in gap_pack:
                 label = Label(day[0].date_and_time.date())
                 day.insert(0, label)
-            context = {'gap_pack': gap_pack, 'title': 'Available timeslots'}
+            context = {'gap_pack': gap_pack, 'title': _('Available timeslots')}
         return render(request, 'appointments/gaps.html', context)
     
     if request.method == 'POST': 
@@ -629,7 +629,7 @@ def outlook(request):
         appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
     except:
         appoint_beginnings = []
-    context = {'list': appoint_beginnings, 'title': 'Upcoming appointments'}
+    context = {'list': appoint_beginnings, 'title': _('Upcoming appointments')}
     return render(request, 'appointments/appointments.html', context)
 
 @login_required()
