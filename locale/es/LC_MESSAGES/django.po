@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-26 14:17-0500\n"
+"POT-Creation-Date: 2023-01-26 14:57-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,7 @@ msgstr "Mis citas"
 
 #: .\appointments\templates\appointments\create_gaps.html:3
 #: .\appointments\templates\appointments\create_gaps.html:52
+#: .\appointments\templates\appointments\created_gaps.html:3
 #: .\appointments\templates\base.html:23
 msgid "Create gaps"
 msgstr "Añadir"
@@ -32,6 +33,14 @@ msgstr "Añadir"
 #: .\appointments\templates\appointments\create_gaps.html:9
 msgid "Select the gaps you don't want to include"
 msgstr "Seleccione los periodos que no quiere incluir"
+
+#: .\appointments\templates\appointments\created_gaps.html:9
+msgid "Gaps created"
+msgstr "Periodos añadidos"
+
+#: .\appointments\templates\appointments\gaps.html:3
+msgid "Gaps"
+msgstr "Periodos"
 
 #: .\appointments\templates\appointments\home.html:4
 msgid "Home"
@@ -42,10 +51,12 @@ msgid "Name"
 msgstr "Nombre"
 
 #: .\appointments\templates\appointments\home.html:24
+#: .\appointments\templates\appointments\personal_info.html:34
 msgid "Occupation"
 msgstr "Ocupación"
 
 #: .\appointments\templates\appointments\home.html:28
+#: .\appointments\templates\appointments\personal_info.html:14
 msgid "Email"
 msgstr "Correo"
 
@@ -69,13 +80,39 @@ msgstr "Agendar"
 msgid "Appoints"
 msgstr "Mis citas"
 
+#: .\appointments\templates\appointments\personal_info.html:3
+#: .\appointments\templates\base.html:29
+msgid "Personal info"
+msgstr "Datos personales"
+
+#: .\appointments\templates\appointments\personal_info.html:9
+msgid "Personal data"
+msgstr "Datos personales"
+
+#: .\appointments\templates\appointments\personal_info.html:19
+msgid "First name"
+msgstr "Nombre"
+
+#: .\appointments\templates\appointments\personal_info.html:24
+msgid "Last name"
+msgstr "Apellido"
+
+#: .\appointments\templates\appointments\personal_info.html:29
+msgid "Date of birth"
+msgstr "Fecha de nacimiento"
+
+#: .\appointments\templates\appointments\personal_info.html:39
+msgid "Submit"
+msgstr "Enviar"
+
 #: .\appointments\templates\appointments\select_period.html:3
 msgid "Select period"
-msgstr "Seleccionar periodo"
+msgstr "Seleccione el periodo"
 
 #: .\appointments\templates\appointments\select_period.html:7
 msgid "Select date for the first day and number of days to display new optional gaps"
-msgstr "Seleccione la fecha del primer día y el número de días en adelante que desea editar"
+msgstr "Seleccione la fecha del primer día y el número de días en adelante que desea "
+"editar"
 
 #: .\appointments\templates\appointments\select_period.html:24
 msgid "Number of days"
@@ -156,10 +193,6 @@ msgstr "Panorama"
 #: .\appointments\templates\base.html:27
 msgid "Book"
 msgstr "Agendar"
-
-#: .\appointments\templates\base.html:29
-msgid "Personal info"
-msgstr "Datos personales"
 
 #: .\appointments\templates\base.html:30
 msgid "Logout"

@@ -1,41 +1,42 @@
 {% extends 'base.html' %}
-{% block title %}Personal info{% endblock %}
+{% load i18n %}
+{% block title %}{% trans 'Personal info' %}{% endblock %}
 
 
 {% block content %}
 
 <div class='container'>
-    <h1>Fill in these optional fields</h1>
+    <h1>{% trans 'Personal data' %}</h1>
     <form action="" method='POST'>
         {% csrf_token %}
         <div class="form-row inner-container">
             <div class="form-group col-md-4">
-                <label for="email">Email</label>
+                <label for="email">{% trans 'Email' %}</label>
                 {{ form.email }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="first_name">First name</label>
+                <label for="first_name">{% trans 'First name' %}</label>
                 {{ form.first_name }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="last_name">Last name</label>
+                <label for="last_name">{% trans 'Last name' %}</label>
                 {{ form.last_name }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="date_of_birth">Date of birth</label>
+                <label for="date_of_birth">{% trans 'Date of birth' %}</label>
                 {{ form.date_of_birth }}
             </div>
             <br>
             <div class="form-group col-md-4">
-                <label for="occupation">Occupation</label>
+                <label for="occupation">{% trans 'Occupation' %}</label>
                 {{ form.occupation }}
             </div>
         </div>
         <br>
-        <input type="submit" class="btn btn-primary" value="Submit">
+        <input type="submit" class="btn btn-primary" value={% trans 'Submit' %}>
     </form>
     
 </div>

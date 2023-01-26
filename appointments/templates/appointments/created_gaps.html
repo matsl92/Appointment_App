@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Create gaps{% endblock %}
+{% load i18n %}
+{% block title %}{% trans 'Create gaps' %}{% endblock %}
 
 
 {% block content %}
 
 
-<h1>Gaps created</h1>
+<h1>{% trans 'Gaps created' %}</h1>
 <div class="main-container">
     {% for day in gap_pack %}
         <div class="column">
