@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,19 +15,19 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-lg-5">
-                <a class="navbar-brand" href="/home/">BarberShop</a>
+                <a class="navbar-brand" href="/home/">{% trans 'BarberShop' %}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'create_gaps' %} active {% endif %} {% if request.resolver_match.url_name == 'select_period' %} active {% endif %}"
-                            href="/create_gaps/select_period/">Create gaps</a></li>
+                            href="/create_gaps/select_period/">{% trans 'Create gaps' %}</a></li>
 
-                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'outlook' %} active {% endif %}" href="/outlook/">Outlook</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'outlook' %} active {% endif %}" href="/outlook/">{% trans 'Outlook' %}</a></li>
                             
-                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'gaps' %} active {% endif %}" href="/gaps/">Book</a></li>
-                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'appointments' %} active {% endif %}" aria-current="page" href="/appointments/">Appointments</a></li>
-                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'personal_info' %} active {% endif %}" href="/personal_info/">Personal info</a></li>
-                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'logout' %} active {% endif %}" href='/logout/'>Logout</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'gaps' %} active {% endif %}" href="/gaps/">{% trans 'Book' %}</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'appointments' %} active {% endif %}" aria-current="page" href="/appointments/">{% trans 'Appointments' %}</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'personal_info' %} active {% endif %}" href="/personal_info/">{% trans 'Personal info' %}</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'logout' %} active {% endif %}" href='/logout/'>{% trans 'Logout' %}</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,7 +44,7 @@
         </header>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">BarberShop &copy; 2023</p></div>
+            <div class="container"><p class="m-0 text-center text-white">{% trans 'BarberShop' %} &copy; 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

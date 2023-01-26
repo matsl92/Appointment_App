@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-26 12:07-0500\n"
+"POT-Creation-Date: 2023-01-26 12:19-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,34 @@ msgstr "Agendar"
 #: .\appointments\templates\appointments\home.html:61
 msgid "Appoints"
 msgstr "Mis citas"
+
+#: .\appointments\templates\base.html:18 .\appointments\templates\base.html:47
+msgid "BarberShop"
+msgstr "Barbería"
+
+#: .\appointments\templates\base.html:23
+msgid "Create gaps"
+msgstr "Añadir"
+
+#: .\appointments\templates\base.html:25
+msgid "Outlook"
+msgstr "Panorama"
+
+#: .\appointments\templates\base.html:27
+msgid "Book"
+msgstr "Agendar"
+
+#: .\appointments\templates\base.html:28
+msgid "Appointments"
+msgstr "Mis citas"
+
+#: .\appointments\templates\base.html:29
+msgid "Personal info"
+msgstr "Datos personales"
+
+#: .\appointments\templates\base.html:30
+msgid "Logout"
+msgstr "Cerrar sesión"
 
 #: .\appointments\views.py:102
 msgid "first text to be translated"
