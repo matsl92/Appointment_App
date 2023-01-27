@@ -1,5 +1,9 @@
 from datetime import time, date, datetime, timedelta
 
+gap_step = timedelta(minutes=5) 
+
+gap_duration = timedelta(minutes=30)
+
 def approximate_time(t):  # create_new_gaps GET
     a = t.minute
     appr_a = round(a/5)*5

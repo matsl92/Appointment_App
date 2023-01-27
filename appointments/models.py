@@ -3,12 +3,33 @@ import datetime
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from authenticate.models import NewUser
-from .tools import approximate_time, approximate_timedelta
+from .tools import approximate_time, approximate_timedelta, gap_step, gap_duration
 
 
-# class Brecha(models.Model):
-#     pass
-
+class Brecha(models.Model):
+    fecha = models.DateField()
+    inicio = models.TimeField()
+    final = models.TimeField()
+    
+    def save(self, *args, **kwargs):
+        self.inicio = approximate_time(self.inicio)
+        self.final = approximate_time(self.final)
+        if self.final > self.inicio:
+            if self.pk:
+                for gap in Brecha.objects.get(pk=self.pk).gap_set.all():
+                    gap.delete()
+            date = self.fecha
+            start = self.inicio
+            n = (self.final-self.inicio) // gap_step
+            for i in range(n):
+                gap = Gap(
+                    date_and_time=datetime(date.year, date.month, date.day, start.hour, start.minute), 
+                    time_period = gap_step, 
+                    brecha=self)
+                gap.save()
+                start += gap_step
+            super().save()
+        
 
 class Servicio(models.Model):
     nombre = models.CharField(max_length=30)
@@ -29,6 +50,7 @@ class Gap(models.Model):
     date_and_time = models.DateTimeField(unique=True)
     time_period = models.DurationField()
     appointment = models.ForeignKey(Appointment, on_delete=models.SET_DEFAULT, default=None, null=True)
+    brecha = models.ForeignKey(Brecha, on_delete=models.CASCADE, default=None)
     is_limit = models.BooleanField(default=False)
     
     
