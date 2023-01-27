@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-26 21:51-0500\n"
+"POT-Creation-Date: 2023-01-26 22:20-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,6 +268,7 @@ msgid "Upcoming appointments"
 msgstr "Próximas citas"
 
 #: .\authenticate\templates\authenticate\login.html:10
+#: .\authenticate\templates\authenticate\login.html:30
 #: .\authenticate\templates\authenticate\register.html:35
 msgid "Login"
 msgstr "Iniciar sesión"
@@ -277,7 +278,6 @@ msgid "Sign in here"
 msgstr "Inicie sesión aquí"
 
 #: .\authenticate\templates\authenticate\login.html:28
-#: .\authenticate\templates\authenticate\login.html:30
 #: .\authenticate\templates\authenticate\register.html:31
 msgid "Phone number"
 msgstr "Celular"
@@ -291,6 +291,30 @@ msgstr "Registrarse"
 #: .\authenticate\templates\authenticate\register.html:27
 msgid "Register here"
 msgstr "Regístrese aquí"
+
+#: .\authenticate\views.py:24
+msgid "You have logged in successfully"
+msgstr "Inicio de sesión exitoso"
+
+#: .\authenticate\views.py:28
+msgid "Phone number is not registered"
+msgstr "Número de celular no está registrado"
+
+#: .\authenticate\views.py:32
+msgid "Invalid phone number"
+msgstr "Número de celular no válido"
+
+#: .\authenticate\views.py:41
+msgid "You were logged out"
+msgstr "Se cerró la sesión"
+
+#: .\authenticate\views.py:66
+msgid "Registration successful"
+msgstr "Registro exitoso"
+
+#: .\authenticate\views.py:73
+msgid "Invalid phone number, enter a +10 digit number with no spaces in between"
+msgstr "Número de celular invalido, ingrese un número de +10 dígitos sin espacios"
 
 #: .\second_one\settings.py:135
 msgid "English"

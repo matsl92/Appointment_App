@@ -5,26 +5,32 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .forms import NewUserCreationForm, NewUserChangeForm, PhoneValForm
+from django.utils.translation import gettext as _
 
 def login_user(request):
     if request.method == 'POST':
-        def password_generator(username):
-            dic = {'1': 'a', '2': 'b', '3': 'c', '4': 'd', '5': 'e', '6': 'f', '7': 'g', '8': 'h', '9': 'i', '0': 'j', ' ': 'k'}
-            password = []
-            for i in str(username):
-                password.append(dic[i])
-            return "".join(password)
-        username = request.POST['phone_number']
-        password = password_generator(username)
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, ('You have logged in successfully'))
-            return redirect('appointments:home')
-        else:
-            print("User is None")
-            messages.error(request, 'Phone number is not registered')
-            return redirect('authenticate:login')
+        try:
+            def password_generator(username):
+                dic = {'1': 'a', '2': 'b', '3': 'c', '4': 'd', '5': 'e', '6': 'f', '7': 'g', '8': 'h', '9': 'i', '0': 'j', ' ': 'k'}
+                password = []
+                for i in str(username):
+                    password.append(dic[i])
+                return "".join(password)
+            username = request.POST['phone_number']
+            password = password_generator(username)
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, (_('You have logged in successfully')))
+                return redirect('appointments:home')
+            else:
+                print("User is None")
+                messages.error(request, (_('Phone number is not registered')))
+                return redirect('authenticate:login')
+        except:
+            context = {}
+            messages.error(request, (_('Invalid phone number')))
+            return render(request, 'authenticate/login.html', context)
     else:
         context = {}
         return render(request, 'authenticate/login.html', context)
@@ -32,7 +38,7 @@ def login_user(request):
 @login_required(login_url='/authenticate/login/')
 def logout_user(request):
     logout(request)
-    messages.success(request, ('You were logged out'))
+    messages.success(request, (_('You were logged out')))
     return redirect('authenticate:login')
 
 def register_user(request):
@@ -57,14 +63,14 @@ def register_user(request):
                 password = form_2.cleaned_data['password2']
                 user = authenticate(username=username, password=password)
                 login(request, user)
-                messages.success(request, ('Registration successful'))
+                messages.success(request, (_('Registration successful')))
                 return redirect('appointments:home')
             else:
                 print("User is not None")
                 messages.error(request, (form_2.errors))
                 return redirect('authenticate:register')
         else:
-            messages.error(request, ('Invalid phone number, enter a +10 digit number with no spaces in between'))
+            messages.error(request, (_('Invalid phone number, enter a +10 digit number with no spaces in between')))
             return redirect('authenticate:register')
     else:
         form = PhoneValForm()
