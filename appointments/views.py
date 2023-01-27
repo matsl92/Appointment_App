@@ -494,7 +494,7 @@ def gaps(request):
         available_gaps = Gap.objects.filter(appointment=None).order_by('date_and_time').filter(date_and_time__lte=limit_datetime)
         if len(available_gaps) == 0:
             gap_pack = []
-            context = {'gap_pack': gap_pack, 'title': 'There are no available timeslots'}
+            context = {'gap_pack': gap_pack, 'title': _('There are no available timeslots')}
         else:
             bubbles = []
             start = available_gaps[0].date_and_time
