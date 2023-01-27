@@ -2,7 +2,7 @@ Create apps:
 client: authenticate, booking, outlook, profile 
 owner: authenticate, availability
 
-All templates are able to display messages, now the messages have to be provided by the views in the appointment app
+All templates are abble to display messages, now the messages have to be provided by the views in the appointment app
 
 Register should be able to login in some cases
 

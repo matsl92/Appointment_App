@@ -3,6 +3,21 @@ import datetime
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from authenticate.models import NewUser
+from .tools import approximate_time, approximate_timedelta
+
+
+# class Brecha(models.Model):
+#     pass
+
+
+class Servicio(models.Model):
+    nombre = models.CharField(max_length=30)
+    duracion = models.DurationField()
+    valor = models.BigIntegerField()
+    
+    def save(self, *args, **kwargs):
+        self.duracion = approximate_timedelta(self.duracion)
+        super().save()
 
 class Appointment(models.Model):
     user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
