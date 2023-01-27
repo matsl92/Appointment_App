@@ -23,7 +23,7 @@ def login_user(request):
             return redirect('appointments:home')
         else:
             print("User is None")
-            messages.error(request, 'Password did not match phone number')
+            messages.error(request, 'Phone number is not registered')
             return redirect('authenticate:login')
     else:
         context = {}

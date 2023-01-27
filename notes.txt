@@ -11,9 +11,6 @@ Need to delete CustomUser model and reference django User model in the other mod
 from django.contrib.auth.models import User and customize it extending the model if necessary.
 
 
-There are some issues with login and register template translations
-
-
 Messages workin on authenticate app, translation for them are missing though
 All templates are able to display messages, now the messages have to be provided by the views in the appointment app
 

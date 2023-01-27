@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-26 15:47-0500\n"
+"POT-Creation-Date: 2023-01-26 21:51-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,14 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\appointments\templates\appointments\appointments.html:3
-#: .\appointments\templates\base.html:28
+#: .\appointments\templates\base.html:36
 msgid "Appointments"
 msgstr "Mis citas"
 
 #: .\appointments\templates\appointments\create_gaps.html:3
 #: .\appointments\templates\appointments\create_gaps.html:52
 #: .\appointments\templates\appointments\created_gaps.html:3
-#: .\appointments\templates\base.html:23
+#: .\appointments\templates\base.html:31
 msgid "Create gaps"
 msgstr "Añadir"
 
@@ -46,42 +46,42 @@ msgstr "Periodos"
 msgid "Home"
 msgstr "Inicio"
 
-#: .\appointments\templates\appointments\home.html:19
+#: .\appointments\templates\appointments\home.html:18
 msgid "Name"
 msgstr "Nombre"
 
-#: .\appointments\templates\appointments\home.html:24
+#: .\appointments\templates\appointments\home.html:23
 #: .\appointments\templates\appointments\personal_info.html:34
 msgid "Occupation"
 msgstr "Ocupación"
 
-#: .\appointments\templates\appointments\home.html:28
+#: .\appointments\templates\appointments\home.html:27
 #: .\appointments\templates\appointments\personal_info.html:14
 msgid "Email"
 msgstr "Correo"
 
-#: .\appointments\templates\appointments\home.html:32
+#: .\appointments\templates\appointments\home.html:31
 msgid "Birth"
 msgstr "Nacimiento"
 
-#: .\appointments\templates\appointments\home.html:36
+#: .\appointments\templates\appointments\home.html:35
 msgid "Points"
 msgstr "Puntos"
 
-#: .\appointments\templates\appointments\home.html:40
+#: .\appointments\templates\appointments\home.html:39
 msgid "Edit"
 msgstr "Editar"
 
-#: .\appointments\templates\appointments\home.html:60
+#: .\appointments\templates\appointments\home.html:59
 msgid "Book now"
 msgstr "Agendar"
 
-#: .\appointments\templates\appointments\home.html:61
+#: .\appointments\templates\appointments\home.html:60
 msgid "Appoints"
 msgstr "Mis citas"
 
 #: .\appointments\templates\appointments\personal_info.html:3
-#: .\appointments\templates\base.html:29
+#: .\appointments\templates\base.html:37
 msgid "Personal info"
 msgstr "Datos personales"
 
@@ -157,18 +157,15 @@ msgstr "Editar los periodos disponibles y mantener los ya agendados"
 
 #: .\appointments\templates\appointments\select_overwrite.html:16
 msgid "Overwrite and cancel gaps for selected days"
-msgstr ""
-"Sobre escribir la disponibilidad y cancelar citas agendadas en estos periodos"
+msgstr "Sobre escribir la disponibilidad y cancelar citas agendadas en estos periodos"
 
 #: .\appointments\templates\appointments\select_period.html:3
 msgid "Select period"
 msgstr "Seleccione el periodo"
 
 #: .\appointments\templates\appointments\select_period.html:7
-msgid ""
-"Select date for the first day and number of days to display new optional gaps"
-msgstr ""
-"Seleccione la fecha del primer día y el número de días en adelante que desea "
+msgid "Select date for the first day and number of days to display new optional gaps"
+msgstr "Seleccione la fecha del primer día y el número de días en adelante que desea "
 
 #: .\appointments\templates\appointments\select_period.html:24
 msgid "Number of days"
@@ -238,19 +235,19 @@ msgstr "final del domingo"
 msgid "Display optional gaps"
 msgstr "Mostrar periodos opcionales"
 
-#: .\appointments\templates\base.html:18 .\appointments\templates\base.html:47
+#: .\appointments\templates\base.html:26 .\appointments\templates\base.html:55
 msgid "BarberShop"
 msgstr "Barbería"
 
-#: .\appointments\templates\base.html:25
+#: .\appointments\templates\base.html:33
 msgid "Outlook"
 msgstr "Panorama"
 
-#: .\appointments\templates\base.html:27
+#: .\appointments\templates\base.html:35
 msgid "Book"
 msgstr "Agendar"
 
-#: .\appointments\templates\base.html:30
+#: .\appointments\templates\base.html:38
 msgid "Logout"
 msgstr "Cerrar sesión"
 
@@ -271,27 +268,27 @@ msgid "Upcoming appointments"
 msgstr "Próximas citas"
 
 #: .\authenticate\templates\authenticate\login.html:10
-#: .\authenticate\templates\authenticate\login.html:22
-#: .\authenticate\templates\authenticate\register.html:26
+#: .\authenticate\templates\authenticate\register.html:35
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: .\authenticate\templates\authenticate\login.html:16
+#: .\authenticate\templates\authenticate\login.html:24
 msgid "Sign in here"
 msgstr "Inicie sesión aquí"
 
-#: .\authenticate\templates\authenticate\login.html:20
-#: .\authenticate\templates\authenticate\register.html:22
+#: .\authenticate\templates\authenticate\login.html:28
+#: .\authenticate\templates\authenticate\login.html:30
+#: .\authenticate\templates\authenticate\register.html:31
 msgid "Phone number"
-msgstr "Número_de_celular"
+msgstr "Celular"
 
-#: .\authenticate\templates\authenticate\login.html:24
-#: .\authenticate\templates\authenticate\register.html:9
-#: .\authenticate\templates\authenticate\register.html:24
+#: .\authenticate\templates\authenticate\login.html:32
+#: .\authenticate\templates\authenticate\register.html:10
+#: .\authenticate\templates\authenticate\register.html:33
 msgid "Register"
 msgstr "Registrarse"
 
-#: .\authenticate\templates\authenticate\register.html:18
+#: .\authenticate\templates\authenticate\register.html:27
 msgid "Register here"
 msgstr "Regístrese aquí"
 
