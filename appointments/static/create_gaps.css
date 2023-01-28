@@ -16,7 +16,15 @@ h1 {
 }
 
 .main-container {
+    display: grid;
+    align-content: center;
     padding: 10px;
+    min-height: 65vh;
+}
+
+.input-label {
+    font-size: 1.2rem;
+    color: #212529
 }
 
 .column input {

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Select service' %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans 'Book an appointment' %}</h1>
+<div class="main-container">
+    <form action="" method="POST" class="form">
+        {% csrf_token %}
+        <label for="service" class="input-label">{% trans 'Select a service' %}</label>
+        <select class='form-control form-select' name="service" id="service" required>
+            {% for service in services %}
+                <option value={{ service.pk }}>{{ service }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="date" class="input-label">{% trans 'Select date' %}</label>
+        <input type="date" id="date" name="date" class="form-control" min={{ min }} max={{ max }} required>
+        <br>
+        <br>
+        <input type="submit" class="btn btn-primary" value="{% trans 'Display options' %}">
+    </form>
+</div>
+
+{% endblock %}

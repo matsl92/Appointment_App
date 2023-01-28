@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-27 10:27-0500\n"
+"POT-Creation-Date: 2023-01-27 21:14-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,7 +121,7 @@ msgstr "a las"
 
 #: .\appointments\templates\appointments\schedule.html:11
 msgid "Select a servise"
-msgstr "Seleccione un servivio"
+msgstr "Seleccione un servicio"
 
 #: .\appointments\templates\appointments\schedule.html:13
 msgid "For a different service select a different gap"
@@ -235,6 +235,37 @@ msgstr "final del domingo"
 msgid "Display optional gaps"
 msgstr "Mostrar periodos opcionales"
 
+#: .\appointments\templates\appointments\select_service.html:3
+msgid "Select service"
+msgstr "Seleccionar servicio"
+
+#: .\appointments\templates\appointments\select_service.html:7
+#: .\appointments\views.py:596
+msgid "Book an appointment"
+msgstr "Agende una cita"
+
+#: .\appointments\templates\appointments\select_service.html:11
+msgid "Select a service"
+msgstr "Seleccione un servicio"
+
+#: .\appointments\templates\appointments\select_service.html:18
+msgid "Select date"
+msgstr "Seleccione una fecha"
+
+#: .\appointments\templates\appointments\select_service.html:22
+msgid "Display options"
+msgstr "Mostrar opciones"
+
+#: .\appointments\templates\appointments\select_time.html:3
+#: .\appointments\templates\appointments\select_time.html:11
+msgid "Select time"
+msgstr "Seleccione la hora"
+
+#: .\appointments\templates\appointments\select_time.html:20
+#: .\appointments\templates\base.html:35
+msgid "Book"
+msgstr "Agendar"
+
 #: .\appointments\templates\base.html:26 .\appointments\templates\base.html:55
 msgid "BarberShop"
 msgstr "Barbería"
@@ -242,10 +273,6 @@ msgstr "Barbería"
 #: .\appointments\templates\base.html:33
 msgid "Outlook"
 msgstr "Panorama"
-
-#: .\appointments\templates\base.html:35
-msgid "Book"
-msgstr "Agendar"
 
 #: .\appointments\templates\base.html:38
 msgid "Logout"
@@ -255,19 +282,23 @@ msgstr "Cerrar sesión"
 msgid "first text to be translated"
 msgstr "Primer texto para traducir"
 
-#: .\appointments\views.py:497
-msgid "There are no available timeslots"
-msgstr "No hay disponibilidad en este momento"
+#: .\appointments\views.py:573
+msgid "There are no available timeslots for this date or service, please select another date"
+msgstr "No hay disponibilidad para esta hora o servicio, por favor seleccione otra fecha"
 
-#: .\appointments\views.py:543
-msgid "Available timeslots"
-msgstr "Periodos disponibles"
+#: .\appointments\views.py:613
+msgid "This gap is no longer available, please select anotherone"
+msgstr "Esta hora ya no está disponible, por favor seleccione otra"
 
-#: .\appointments\views.py:615
+#: .\appointments\views.py:628
+msgid "This gap is no longer available, please try again"
+msgstr "Esta hora ya no está disponible, por favor inténtelo de nuevo"
+
+#: .\appointments\views.py:697
 msgid "My appointments"
 msgstr "Mis citas"
 
-#: .\appointments\views.py:632
+#: .\appointments\views.py:714
 msgid "Upcoming appointments"
 msgstr "Próximas citas"
 
@@ -327,3 +358,9 @@ msgstr "Ingles"
 #: .\second_one\settings.py:136
 msgid "Spanish"
 msgstr "Español"
+
+#~ msgid "There are no available timeslots"
+#~ msgstr "No hay disponibilidad en este momento"
+
+#~ msgid "Available timeslots"
+#~ msgstr "Periodos disponibles"

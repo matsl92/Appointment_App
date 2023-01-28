@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Select time' %}{% endblock %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+<div class="main-container">
+    <form action="success/" method="POST" class="form">
+        {% csrf_token %}
+        <label for="time" class="input-label">{% trans 'Select time' %}</label>
+        <select class='form-control form-select' name="gap_pk" id="time" required>
+            {% for gap in gap_pack %}
+                <option value={{ gap.pk }}>{{ gap }}</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name='service_pk' value={{ service_pk }}>
+        <br>
+        <br>
+        <input type="submit" class="btn btn-primary" value="{% trans 'Book' %}">
+    </form>
+</div>
+
+{% endblock %}

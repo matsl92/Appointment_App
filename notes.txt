@@ -13,6 +13,12 @@ if the Brecha is modified it first deletes all its gaps and then creates new one
 among Brechas the page will breack down and raise and error thus it must be fixed, besides it would be good
 to keep the already existing gaps
 
+new order to schedule an appointment: select service, select date, select time, it seems to work just fine,
+also added some messages and all new translations 
+
+Planing to merge schedule into main to them push up to heroku, however there will be some trouble with 
+the database most likely, just when I had to delete the db and so on to integrate the new changes in the models.
+
 
 navbar 
 navbar-expand-lg 

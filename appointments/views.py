@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Week, Gap, Appointment
+from .models import Week, Gap, Appointment, Servicio, Brecha
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import datetime
@@ -264,7 +264,7 @@ def create_gaps(request):
                 
         return semigap_pack
   
-    def get_base_gap_pack():  # returns gap list of lists
+    def get_base_gap_pack():  # returns list of gap lists
         bubbles = make_bubbles_after_gaps()
         start_datetime = make_aware(datetime(start_date.year, start_date.month, start_date.day, 0, 0))
         end_datetime = start_datetime + timedelta(days=n_days)
@@ -483,18 +483,96 @@ def create_gaps(request):
             
         return render(request, 'appointments/created_gaps.html', str_values)
           
-@login_required()   
-def gaps(request):
+# @login_required()   
+# def gaps(request):
            
-    if request.method == 'GET':
-        delete_expired_gaps()
-        limit_date = datetime.today().date() + timedelta(days=7)
-        limit_datetime = make_aware(datetime(limit_date.year, limit_date.month, limit_date.day, 0, 0))
+#     if request.method == 'GET':
+#         delete_expired_gaps()
+#         limit_date = datetime.today().date() + timedelta(days=7)
+#         limit_datetime = make_aware(datetime(limit_date.year, limit_date.month, limit_date.day, 0, 0))
              
-        available_gaps = Gap.objects.filter(appointment=None).order_by('date_and_time').filter(date_and_time__lte=limit_datetime)
+#         available_gaps = Gap.objects.filter(appointment=None).order_by('date_and_time').filter(date_and_time__lte=limit_datetime)
+#         if len(available_gaps) == 0:
+#             gap_pack = []
+#             context = {'gap_pack': gap_pack, 'title': _('There are no available timeslots')}
+#         else:
+#             bubbles = []
+#             start = available_gaps[0].date_and_time
+#             for i in range(len(available_gaps)-1):
+#                 if available_gaps[i].date_and_time + available_gaps[i].time_period != available_gaps[i+1].date_and_time:
+#                     end = available_gaps[i].date_and_time + available_gaps[i].time_period
+#                     bubbles.append(Bubble(start, end))
+#                     start = available_gaps[i+1].date_and_time
+#                 if i == len(available_gaps)-2:
+#                     end = available_gaps[i+1].date_and_time + available_gaps[i+1].time_period
+#                     bubbles.append(Bubble(start, end))
+            
+#             for gap in Gap.objects.all():
+#                 if gap.is_limit == True:
+#                     gap.is_limit = False              
+#                     gap.save()       
+                    
+#             indexing_gaps = []
+#             for i in range(len(bubbles)):
+#                 n = (bubbles[i].end-bubbles[i].start) // gap_duration
+#                 start = bubbles[i].start
+#                 for i in range(n):
+#                     gap = Gap.objects.get(date_and_time=start)
+#                     if i == n-1:
+#                         gap.is_limit = True
+#                         gap.save()
+#                     indexing_gaps.append(gap)
+#                     start += gap_duration
+                    
+#             gap_pack = []
+#             date = indexing_gaps[0].date_and_time.date()
+#             daily_gaps = []
+#             for i in range(len(indexing_gaps)):
+#                 if indexing_gaps[i].date_and_time.date() == date:
+#                     daily_gaps.append(indexing_gaps[i])
+#                 else:
+#                     gap_pack.append(daily_gaps)
+#                     daily_gaps = []
+#                     daily_gaps.append(indexing_gaps[i])
+#                     date = indexing_gaps[i].date_and_time.date()
+#                 if i == len(indexing_gaps)-1:
+#                     gap_pack.append(daily_gaps)
+#             for day in gap_pack:
+#                 label = Label(day[0].date_and_time.date())
+#                 day.insert(0, label)
+#             context = {'gap_pack': gap_pack, 'title': _('Available timeslots')}
+#         return render(request, 'appointments/gaps.html', context)
+    
+#     if request.method == 'POST': 
+#         pk = dict(request.POST.lists())['pk'][0]
+#         gap = Gap.objects.get(pk=pk)
+#         context = {'gap': gap}
+#         return render(request, 'appointments/schedule.html', context)
+
+@login_required()
+def gaps(request):
+    if request.method == 'GET':
+        min_date = date.today().strftime("%Y-%m-%d")
+        max_date = Gap.objects.order_by('date_and_time').last().date_and_time.strftime("%Y-%m-%d")
+        services = Servicio.objects.all()
+        context = {'services': services, 'min': min_date, 'max': max_date}
+        return render(request, 'appointments/select_service.html', context)
+
+    if request.method == 'POST':
+        service_pk = int(request.POST['service'])
+        d = request.POST['date']
+        service_duration = Servicio.objects.get(pk=service_pk).duracion
+        
+        # delete_expired_gaps()
+        
+        available_gaps = Gap.objects.filter(date_and_time__date=d).filter(appointment=None).filter(date_and_time__gte=date.today())
+        gap_pack = []
+        print(available_gaps)
+        print(len(available_gaps))
         if len(available_gaps) == 0:
-            gap_pack = []
-            context = {'gap_pack': gap_pack, 'title': _('There are no available timeslots')}
+            messages.error(request, (_('There are no available timeslots for this date or service, please select another date')))
+            return redirect('appointments:gaps')
+            # context = {'gap_pack': gap_pack, 'title': 'There are no available timeslots for this date or service'}
         else:
             bubbles = []
             start = available_gaps[0].date_and_time
@@ -507,96 +585,100 @@ def gaps(request):
                     end = available_gaps[i+1].date_and_time + available_gaps[i+1].time_period
                     bubbles.append(Bubble(start, end))
             
-            for gap in Gap.objects.all():
-                if gap.is_limit == True:
-                    gap.is_limit = False              
-                    gap.save()       
-                    
-            indexing_gaps = []
-            for i in range(len(bubbles)):
-                n = (bubbles[i].end-bubbles[i].start) // gap_duration
-                start = bubbles[i].start
+            # datetimes = [gap.date_and_time for gap in available_gaps]
+            for bubble in bubbles:
+                start = bubble.start
+                n = (bubble.end - bubble.start) // service_duration
                 for i in range(n):
-                    gap = Gap.objects.get(date_and_time=start)
-                    if i == n-1:
-                        gap.is_limit = True
-                        gap.save()
-                    indexing_gaps.append(gap)
-                    start += gap_duration
+                    gap_pack.append(available_gaps[[gap.date_and_time for gap in available_gaps].index(start)])
+                    start += service_duration
                     
-            gap_pack = []
-            date = indexing_gaps[0].date_and_time.date()
-            daily_gaps = []
-            for i in range(len(indexing_gaps)):
-                if indexing_gaps[i].date_and_time.date() == date:
-                    daily_gaps.append(indexing_gaps[i])
-                else:
-                    gap_pack.append(daily_gaps)
-                    daily_gaps = []
-                    daily_gaps.append(indexing_gaps[i])
-                    date = indexing_gaps[i].date_and_time.date()
-                if i == len(indexing_gaps)-1:
-                    gap_pack.append(daily_gaps)
-            for day in gap_pack:
-                label = Label(day[0].date_and_time.date())
-                day.insert(0, label)
-            context = {'gap_pack': gap_pack, 'title': _('Available timeslots')}
-        return render(request, 'appointments/gaps.html', context)
-    
-    if request.method == 'POST': 
-        pk = dict(request.POST.lists())['pk'][0]
-        gap = Gap.objects.get(pk=pk)
-        context = {'gap': gap}
-        return render(request, 'appointments/schedule.html', context)
+            context = {'gap_pack': gap_pack, 'service_pk': service_pk, 'title': _('Book an appointment')}
+        return render(request, 'appointments/select_time.html', context)
 
-@login_required()  
+@login_required()
 def success(request):
-    print(request.POST)
-    pk = dict(request.POST.lists())['pk'][0]
-    duration = timedelta(minutes=int(dict(request.POST.lists())['duration'][0]))
-    # In order to replace the use of pk for date_and_time //// maybe is also good to replace index for pk for selecting a indexing gap
-    
-    # bgdt = Gap.objects.get(index=index).date_and_time
-    # n_gaps = duration//gap_step
-    # available_gaps = list(Gap.objects.filter(appointment=None))
-    # for i in range(n_gaps):
-    #     if Gap.objects.get(date_and_time=bgdt+(gap_step*i)) in available_gaps:
-    #         pass
-    #     else:
-    #         print('Not all gaps were available')
-    #         'messagge: this gap is no longer available, try again'
-    #         return redirect('appointments:new_gaps')
-    
-    # Keep changing the code in appointment = 
-    
-    
-    
-    base_gap_pk = Gap.objects.get(pk=pk).pk
-    gap_step = timedelta(minutes=5)
-    n_gaps = duration // gap_step
+    gap_pk = int(request.POST['gap_pk'])
+    service_pk = int(request.POST['service_pk'])
+    service_duration = Servicio.objects.get(pk=service_pk).duracion
     available_gaps = list(Gap.objects.filter(appointment=None))
-    for i in range(n_gaps):
-        if Gap.objects.get(pk=base_gap_pk+i) in available_gaps:
+    n = service_duration // gap_step
+    base_gap = Gap.objects.get(pk=gap_pk)
+    start = base_gap.date_and_time
+    for i in range(n):
+        gap = Gap.objects.get(date_and_time=start)
+        if gap in available_gaps:
             pass
         else:
+            messages.error(request, (_('This gap is no longer available, please select anotherone')))
             print('Not all gaps were available')
             'messagge: this gap is no longer available, try again'
             return redirect('appointments:gaps')
-        
-        
+        start += gap.time_period
+    
     appointment = Appointment(user=request.user)
     appointment.save()
-    for i in range(n_gaps):
-        gap = Gap.objects.get(pk=base_gap_pk+i)
+    start = base_gap.date_and_time
+    for i in range(n):
+        gap = Gap.objects.get(date_and_time=start)
         if gap in available_gaps:
             appointment.gap_set.add(gap)
         else:
             appointment.delete()
-            print('Not all gaps were available')
-            'messagge: this gap is no longer available, try again'
+            messages.error(request, (_('This gap is no longer available, please try again')))
+            print('Not all gaps were available at the second check')
             return redirect('appointments:gaps')
-    'display message'
+        start += gap.time_period
     return redirect('appointments:appointments')
+
+# @login_required()  
+# def success(request):
+#     print(request.POST)
+#     pk = dict(request.POST.lists())['pk'][0]
+#     duration = timedelta(minutes=int(dict(request.POST.lists())['duration'][0]))
+#     # In order to replace the use of pk for date_and_time //// maybe is also good to replace index for pk for selecting a indexing gap
+    
+#     # bgdt = Gap.objects.get(index=index).date_and_time
+#     # n_gaps = duration//gap_step
+#     # available_gaps = list(Gap.objects.filter(appointment=None))
+#     # for i in range(n_gaps):
+#     #     if Gap.objects.get(date_and_time=bgdt+(gap_step*i)) in available_gaps:
+#     #         pass
+#     #     else:
+#     #         print('Not all gaps were available')
+#     #         'messagge: this gap is no longer available, try again'
+#     #         return redirect('appointments:new_gaps')
+    
+#     # Keep changing the code in appointment = 
+    
+    
+    
+#     base_gap_pk = Gap.objects.get(pk=pk).pk
+#     gap_step = timedelta(minutes=5)
+#     n_gaps = duration // gap_step
+#     available_gaps = list(Gap.objects.filter(appointment=None))
+#     for i in range(n_gaps):
+#         if Gap.objects.get(pk=base_gap_pk+i) in available_gaps:
+#             pass
+#         else:
+#             print('Not all gaps were available')
+#             'messagge: this gap is no longer available, try again'
+#             return redirect('appointments:gaps')
+        
+        
+#     appointment = Appointment(user=request.user)
+#     appointment.save()
+#     for i in range(n_gaps):
+#         gap = Gap.objects.get(pk=base_gap_pk+i)
+#         if gap in available_gaps:
+#             appointment.gap_set.add(gap)
+#         else:
+#             appointment.delete()
+#             print('Not all gaps were available')
+#             'messagge: this gap is no longer available, try again'
+#             return redirect('appointments:gaps')
+#     'display message'
+#     return redirect('appointments:appointments')
 
 @login_required()
 def appointments(request):
