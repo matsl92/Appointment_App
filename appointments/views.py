@@ -552,8 +552,12 @@ def create_gaps(request):
 @login_required()
 def gaps(request):
     if request.method == 'GET':
+        delete_expired_gaps()
         min_date = date.today().strftime("%Y-%m-%d")
-        max_date = Gap.objects.order_by('date_and_time').last().date_and_time.strftime("%Y-%m-%d")
+        try:
+            max_date = Gap.objects.order_by('date_and_time').last().date_and_time.strftime("%Y-%m-%d")
+        except:
+            max_date = None
         services = Servicio.objects.all()
         context = {'services': services, 'min': min_date, 'max': max_date}
         return render(request, 'appointments/select_service.html', context)
@@ -563,7 +567,7 @@ def gaps(request):
         d = request.POST['date']
         service_duration = Servicio.objects.get(pk=service_pk).duracion
         
-        # delete_expired_gaps()
+        
         
         available_gaps = Gap.objects.filter(date_and_time__date=d).filter(appointment=None).filter(date_and_time__gte=date.today())
         gap_pack = []
