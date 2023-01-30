@@ -76,7 +76,8 @@ def make_semigaps(week, n_days, start_date):    # returns semigap list // doesn'
     
 def delete_expired_gaps():  # Deletes expired_gaps // used in gaps
         cont = 0
-        for gap in Gap.objects.filter(date_and_time__lte=make_aware(datetime.today())):
+        # for gap in Gap.objects.filter(date_and_time__lte=make_aware(datetime.today())):
+        for gap in Gap.objects.filter(date_and_time__lte=datetime.today()):
             gap.delete()
             cont += 1
         print(cont, 'expired gaps deleted')
@@ -557,7 +558,7 @@ def gaps(request):
         try:
             max_date = Gap.objects.order_by('date_and_time').last().date_and_time.strftime("%Y-%m-%d")
         except:
-            max_date = None
+            max_date = min_date
         services = Servicio.objects.all()
         context = {'services': services, 'min': min_date, 'max': max_date}
         return render(request, 'appointments/select_service.html', context)
