@@ -690,7 +690,8 @@ def appointments(request):
     appoints = list(Appointment.objects.filter(user=request.user))
     for appoint in appoints:
         try:
-            if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
+            # if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
+            if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < datetime.today():
                 appoints.remove(appoint)
         except:
             appoints.remove(appoint)
