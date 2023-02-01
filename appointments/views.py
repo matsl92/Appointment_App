@@ -536,9 +536,10 @@ def gaps(request):
 def success(request):
     gap_pk = int(request.POST['gap_pk'])
     service_pk = int(request.POST['service_pk'])
-    service_duration = Servicio.objects.get(pk=service_pk).duracion
+    service = Servicio.objects.get(pk=service_pk)
+    # service_duration = Servicio.objects.get(pk=service_pk).duracion
     available_gaps = list(Gap.objects.filter(appointment=None))
-    n = service_duration // gap_step
+    n = service.duracion // gap_step
     base_gap = Gap.objects.get(pk=gap_pk)
     start = base_gap.date_and_time
     for i in range(n):
@@ -552,9 +553,9 @@ def success(request):
             return redirect('appointments:gaps')
         start += gap.time_period
     
-    appointment = Appointment(user=request.user)
-    appointment.save()
     start = base_gap.date_and_time
+    appointment = Appointment(user=request.user, inicio=start, final=start, servicio=service)
+    appointment.save()
     for i in range(n):
         gap = Gap.objects.get(date_and_time=start)
         if gap in available_gaps:
@@ -564,42 +565,51 @@ def success(request):
             messages.error(request, (_('This gap is no longer available, please try again')))
             print('Not all gaps were available at the second check')
             return redirect('appointments:gaps')
+        if i == n-1:
+            appointment.final = gap.date_and_time + gap.time_period
+            appointment.save()
         start += gap.time_period
     return redirect('appointments:appointments')
 
 @login_required()
 def appointments(request):
-    appoints = list(Appointment.objects.filter(user=request.user))
-    for appoint in appoints:
-        try:
-            if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
-            # if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < datetime.today():    # for naive date_and_times
-                appoints.remove(appoint)
-        except:
-            appoints.remove(appoint)
-    try:
-        appoint_beginnings = [appoint.gap_set.first() for appoint in appoints]
-        appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
-    except:
-        appoint_beginnings = []
-    context = {'list': appoint_beginnings, 'title': _('My appointments')}
+    # appoints = list(Appointment.objects.filter(user=request.user))
+    # for appoint in appoints:
+    #     try:
+    #         if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
+    #         # if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < datetime.today():    # for naive date_and_times
+    #             appoints.remove(appoint)
+    #     except:
+    #         appoints.remove(appoint)
+    # try:
+    #     appoint_beginnings = [appoint.gap_set.first() for appoint in appoints]
+    #     appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
+    # except:
+    #     appoint_beginnings = []
+    # context = {'list': appoint_beginnings, 'title': _('My appointments')}
+    
+    appoints = Appointment.objects.filter(user=request.user).order_by('inicio')
+    context = {'list': appoints, 'title': _('My appointments')}
     return render(request, 'appointments/appointments.html', context)
 
 @login_required()
 def outlook(request):
-    appoints = list(Appointment.objects.all())
-    for appoint in appoints:
-        try:
-            if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
-                appoints.remove(appoint)
-        except:
-            appoints.remove(appoint)
-    try:
-        appoint_beginnings = [appoint.gap_set.first() for appoint in appoints]
-        appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
-    except:
-        appoint_beginnings = []
-    context = {'list': appoint_beginnings, 'title': _('Upcoming appointments')}
+    # appoints = list(Appointment.objects.all())
+    # for appoint in appoints:
+    #     try:
+    #         if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
+    #             appoints.remove(appoint)
+    #     except:
+    #         appoints.remove(appoint)
+    # try:
+    #     appoint_beginnings = [appoint.gap_set.first() for appoint in appoints]
+    #     appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
+    # except:
+    #     appoint_beginnings = []
+    # context = {'list': appoint_beginnings, 'title': _('Upcoming appointments')}
+    
+    appoints = Appointment.objects.filter(user=request.user).order_by('inicio')
+    context = {'list': appoints, 'title': _('My appointments')}
     return render(request, 'appointments/appointments.html', context)
 
 @login_required()

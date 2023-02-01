@@ -22,7 +22,9 @@ the database most likely, just when I had to delete the db and so on to integrat
 In order to keep using aware datetimes, the localtime function was used in __str__ method to display 
 Gap.date_and_time properly.
 
-plannig to add start and end fields to Appointment model
+Added start, end and service fields to Appointment model, views.appointments and views.outlook work just fine
+
+
 
 
 

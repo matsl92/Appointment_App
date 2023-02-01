@@ -7,7 +7,8 @@
 <h1>{{ title }}</h1>
 <div class="column-2">
     {% for appoint in list %}
-        <div class="appointment-label">{{ appoint.date_and_time }}</div>
+        {% comment %} <div class="appointment-label">{{ appoint.date_and_time }}</div> {% endcomment %}
+        <div class="appointment-label">{{ appoint.inicio }}</div>
     {% endfor %}
 </div>
 

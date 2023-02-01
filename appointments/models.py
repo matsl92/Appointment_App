@@ -49,9 +49,17 @@ class Servicio(models.Model):
 
 class Appointment(models.Model):
     user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
-    
+    inicio = models.DateTimeField()
+    final = models.DateTimeField()
+    servicio = models.ForeignKey(Servicio, on_delete=models.SET_DEFAULT, default=None, null=True)
+    # Corte de cabello - Miercoles 8 (5:30 - 5:55)
     def __str__(self):
-        return str(self.pk)
+        # return str(self.pk)
+        return ''.join([
+            str(self.servicio), 
+            ' - ', 
+            localtime(self.inicio).strftime('%A %d (%I:%M %p - '), 
+            localtime(self.final).strftime('%I:%M %p)')])
   
 class Gap(models.Model):
     date_and_time = models.DateTimeField(unique=True)
