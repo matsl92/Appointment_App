@@ -500,9 +500,9 @@ def gaps(request):
 
     if request.method == 'POST':
         service_pk = int(request.POST['service'])
-        d = request.POST['date']
+        dt = make_aware(datetime.strptime(request.POST['date'], '%Y-%m-%d'))
         service_duration = Servicio.objects.get(pk=service_pk).duracion
-        available_gaps = Gap.objects.filter(date_and_time__date=d).filter(appointment=None).filter(date_and_time__gte=date.today())
+        available_gaps = Gap.objects.filter(date_and_time__date=dt.date()).filter(appointment=None).filter(date_and_time__gte=date.today())
         gap_pack = []
         if len(available_gaps) == 0:
             messages.error(request, (_('There are no available timeslots for this date or service, please select another date')))
@@ -588,7 +588,7 @@ def appointments(request):
     #     appoint_beginnings = []
     # context = {'list': appoint_beginnings, 'title': _('My appointments')}
     
-    appoints = Appointment.objects.filter(user=request.user).order_by('inicio')
+    appoints = Appointment.objects.filter(user=request.user).filter(final__gte=make_aware(datetime.today())).order_by('inicio')
     context = {'list': appoints, 'title': _('My appointments')}
     return render(request, 'appointments/appointments.html', context)
 
@@ -608,8 +608,8 @@ def outlook(request):
     #     appoint_beginnings = []
     # context = {'list': appoint_beginnings, 'title': _('Upcoming appointments')}
     
-    appoints = Appointment.objects.filter(user=request.user).order_by('inicio')
-    context = {'list': appoints, 'title': _('My appointments')}
+    appoints = Appointment.objects.filter(final__gte=make_aware(datetime.today())).order_by('inicio')
+    context = {'list': appoints, 'title': _('Upcoming appointments')}
     return render(request, 'appointments/appointments.html', context)
 
 @login_required()
