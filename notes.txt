@@ -16,8 +16,14 @@ to keep the already existing gaps
 new order to schedule an appointment: select service, select date, select time, it seems to work just fine,
 also added some messages and all new translations 
 
-Planing to merge schedule into main to them push up to heroku, however there will be some trouble with 
+Planning to merge schedule into main to then push up to heroku, however there will be some trouble with 
 the database most likely, just when I had to delete the db and so on to integrate the new changes in the models.
+
+In order to keep using aware datetimes, the localtime function was used in __str__ method to display 
+Gap.date_and_time properly.
+
+plannig to add start and end fields to Appointment model
+
 
 
 navbar 

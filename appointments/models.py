@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from authenticate.models import NewUser
 from datetime import date, time, datetime, timedelta
+from django.utils.timezone import make_aware, localtime
 from .tools import approximate_time, approximate_timedelta, gap_step, gap_duration
 
 class Brecha(models.Model):
@@ -20,11 +21,12 @@ class Brecha(models.Model):
                     gap.delete()
             super().save()
             date = self.fecha
-            start = datetime(date.year, date.month, date.day, self.inicio.hour, self.inicio.minute)
+            # start = datetime(date.year, date.month, date.day, self.inicio.hour, self.inicio.minute)
+            start = make_aware(datetime(date.year, date.month, date.day, self.inicio.hour, self.inicio.minute))
             n = (datetime(2020, 1, 1, self.final.hour, self.final.minute) - datetime(2020, 1, 1, self.inicio.hour, self.inicio.minute)) // gap_step
             for i in range(n):
-                gap = Gap(
-                    date_and_time=datetime(date.year, date.month, date.day, start.hour, start.minute), 
+                gap = Gap( 
+                    date_and_time = start,
                     time_period = gap_step, 
                     brecha=self)
                 gap.save()
@@ -60,9 +62,9 @@ class Gap(models.Model):
     
     
     def __str__(self):
-        return str(self.date_and_time.time().strftime('%I:%M %p'))
+        return str(localtime(self.date_and_time).time().strftime('%I:%M %p'))
+        # return str(self.date_and_time.time().strftime('%I:%M %p'))
     
-
 class Week(models.Model):
     minutes_per_appointment = models.IntegerField(default=30)
     start_date = models.DateField()

@@ -115,9 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'#'en-us'
+LANGUAGE_CODE = 'es-co'
 
-TIME_ZONE = 'UTC' # America/Cancun makes the new seved gaps look 5 hours later in the admin page
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
