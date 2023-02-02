@@ -491,7 +491,7 @@ def gaps(request):
         delete_expired_gaps()
         min_date = date.today().strftime("%Y-%m-%d")
         try:
-            max_date = Gap.objects.order_by('date_and_time').last().date_and_time.strftime("%Y-%m-%d")
+            max_date = localtime(Gap.objects.order_by('date_and_time').last().date_and_time).strftime("%Y-%m-%d")
         except:
             max_date = min_date
         services = Servicio.objects.all()
@@ -518,16 +518,15 @@ def gaps(request):
                 if i == len(available_gaps)-2:
                     end = available_gaps[i+1].date_and_time + available_gaps[i+1].time_period
                     bubbles.append(Bubble(start, end))
-            
             for bubble in bubbles:
                 start = bubble.start
                 n = (bubble.end - bubble.start) // service_duration
                 for i in range(n):
                     gap_pack.append(available_gaps[[gap.date_and_time for gap in available_gaps].index(start)])
                     start += service_duration
-                if len(gap_pack) == 0:
-                    messages.error(request, (_('There are no available timeslots for this date or service, please select another date')))
-                    return redirect('appointments:gaps')
+            if len(gap_pack) == 0:
+                messages.error(request, (_('There are no available timeslots for this date or service, please select another date')))
+                return redirect('appointments:gaps')
                   
             context = {'gap_pack': gap_pack, 'service_pk': service_pk, 'title': _('Book an appointment')}
         return render(request, 'appointments/select_time.html', context)
@@ -625,6 +624,31 @@ def create_week(request):
             return(redirect('appointments:home'))
         else:
             return redirect('appointments:create_week')
+
+login_required()
+def appointment_detail(request):
+    if request.method == 'GET':
+        pk = request.GET['pk']
+        appointment = Appointment.objects.get(pk=pk)
+        d = appointment.inicio.strftime('%d/%m/%Y')
+        day = appointment.inicio.strftime('%A')
+        t = ''.join([appointment.inicio.strftime('%I:%M %p - '), appointment.final.strftime('%I:%M %p')])
+        if appointment.user.first_name:
+            name = appointment.user.first_name
+        else:
+            name = appointment.user.username
+        context = {'appointment': appointment, 'date': d, 'day': day, 'time': t, 'name': name, 'pk': pk}
+        return render(request, 'appointments/appointment_detail.html', context)
+    
+    if request.method == 'POST':
+        if request.POST['action'] == 'Go back':
+            return redirect('appointments:appointments')
+        if request.POST['action'] == 'Cancel':
+            pk = request.POST['pk']
+            appointment = Appointment.objects.get(pk=pk)
+            appointment.delete()
+            messages.success(request, 'Appointment canceled')
+            return redirect('appointments:appointments')
 
 @login_required()  
 def success_2(request):

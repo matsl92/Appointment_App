@@ -7599,6 +7599,7 @@ textarea.form-control-lg {
 
 .p-4 {
   padding: 1.5rem !important;
+  min-height: 68vh;
 }
 
 .p-5 {

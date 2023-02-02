@@ -12,4 +12,5 @@ urlpatterns = [
     path('appointments/', views.appointments, name='appointments'),  
     path('outlook/', views.outlook, name='outlook'), 
     path('create_week/', views.create_week, name='create_week'), 
+    path('detail/', views.appointment_detail, name='appointment, detail'), 
 ]

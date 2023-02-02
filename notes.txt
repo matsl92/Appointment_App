@@ -24,6 +24,27 @@ Gap.date_and_time properly.
 
 Added start, end and service fields to Appointment model, views.appointments and views.outlook work just fine
 
+Created view for appointment details where there's an option to cancel the appointment
+
+
+
+
+
+
+
+
+
+
+BUGS
+
+
+max_date for views.gaps, select_service
+
+
+
+
+
+
 
 
 
