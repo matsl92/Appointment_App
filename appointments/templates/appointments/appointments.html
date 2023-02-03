@@ -5,15 +5,11 @@
 
 {% block content %}
 <h1>{{ title }}</h1>
-{% comment %} <form action="/detail/"> {% endcomment %}
     {% csrf_token %}
     <div class="column-2">
         {% for appoint in list %}
         <a href="/detail/{{ appoint.pk }}" class="appointment-label a">{{ appoint.inicio }}</a>
-        {% comment %} <input type="submit" name="pk" id="{{ appoint.pk }}" value="{{ appoint.pk }}"> {% endcomment %}
-        {% comment %} <label class="appointment-label" for="{{ appoint.pk }}">{{ appoint.inicio }}</label> {% endcomment %}
         {% endfor %}
     </div>
-{% comment %} </form> {% endcomment %}
 
 {% endblock %}

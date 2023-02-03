@@ -38,7 +38,6 @@ def make_semigaps(week, n_days, start_date):    # returns semigap list // doesn'
 def delete_expired_gaps():  # Deletes expired_gaps // used in gaps
         cont = 0
         for gap in Gap.objects.filter(date_and_time__lte=make_aware(datetime.today())):
-        # for gap in Gap.objects.filter(date_and_time__lte=datetime.today()):
             gap.delete()
             cont += 1
         print(cont, 'expired gaps deleted')
@@ -59,13 +58,7 @@ def home(request):
     form = NewUserForm(instance=request.user)
     next_appointment = Appointment.objects.filter(user=request.user).filter(final__gte=make_aware(datetime.today())).order_by('inicio').first()
     
-    context = {
-        'user': request.user, 
-        'form': form, 
-        'url': reverse('appointments:home'), 
-        'message': _('first text to be translated'), 
-        'appoint': next_appointment
-        }
+    context = {'user': request.user, 'form': form, 'appoint': next_appointment}
     return render(request, 'appointments/home.html', context)
 
 @login_required()
@@ -566,6 +559,7 @@ def appointment_detail(request, pk):
         dt = localtime(appointment.inicio)
         d = dt.strftime('%d/%m/%Y')
         day = to_spanish[dt.strftime('%A')]
+        print(day)
         t = ''.join([dt.strftime('%I:%M %p - '), localtime(appointment.final).strftime('%I:%M %p')])
         if appointment.user.first_name:
             name = appointment.user.first_name
@@ -575,11 +569,10 @@ def appointment_detail(request, pk):
         return render(request, 'appointments/appointment_detail.html', context)
     
     if request.method == 'POST':
-        if request.POST['action'] == 'Cancel':
-            appointment = Appointment.objects.get(pk=pk)
-            appointment.delete()
-            messages.success(request, 'Appointment canceled')
-            return redirect('appointments:appointments')
+        appointment = Appointment.objects.get(pk=pk)
+        appointment.delete()
+        messages.success(request, _('Appointment canceled'))
+        return redirect('appointments:appointments')
 
 @login_required()  
 def success_2(request):
@@ -679,5 +672,3 @@ def gaps_2(request):
         context = {'gap': gap}
         return render(request, 'appointments/schedule.html', context)
     
-def trying(request, pk):
-    return HttpResponse(''.join(['cuestion number ', pk]))

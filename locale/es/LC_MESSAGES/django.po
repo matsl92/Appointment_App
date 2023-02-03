@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-27 21:14-0500\n"
+"POT-Creation-Date: 2023-02-03 13:20-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: .\appointments\templates\appointments\appointment_detail.html:3
 #: .\appointments\templates\appointments\appointments.html:3
-#: .\appointments\templates\base.html:36
+#: .\appointments\templates\base.html:37
 msgid "Appointments"
 msgstr "Mis citas"
+
+#: .\appointments\templates\appointments\appointment_detail.html:7
+msgid "Appointment details"
+msgstr "Detalles de la cita"
+
+#: .\appointments\templates\appointments\appointment_detail.html:17
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: .\appointments\templates\appointments\appointment_detail.html:18
+msgid "Go back"
+msgstr "Volver"
 
 #: .\appointments\templates\appointments\create_gaps.html:3
 #: .\appointments\templates\appointments\create_gaps.html:52
 #: .\appointments\templates\appointments\created_gaps.html:3
-#: .\appointments\templates\base.html:31
 msgid "Create gaps"
 msgstr "Añadir"
 
@@ -72,16 +84,24 @@ msgstr "Puntos"
 msgid "Edit"
 msgstr "Editar"
 
-#: .\appointments\templates\appointments\home.html:59
+#: .\appointments\templates\appointments\home.html:48
+msgid "You have an appointment on"
+msgstr "Tiene una cita el"
+
+#: .\appointments\templates\appointments\home.html:49
+msgid "Details"
+msgstr "Detalles"
+
+#: .\appointments\templates\appointments\home.html:60
 msgid "Book now"
 msgstr "Agendar"
 
-#: .\appointments\templates\appointments\home.html:60
+#: .\appointments\templates\appointments\home.html:61
 msgid "Appoints"
 msgstr "Mis citas"
 
 #: .\appointments\templates\appointments\personal_info.html:3
-#: .\appointments\templates\base.html:37
+#: .\appointments\templates\base.html:38
 msgid "Personal info"
 msgstr "Datos personales"
 
@@ -240,7 +260,7 @@ msgid "Select service"
 msgstr "Seleccionar servicio"
 
 #: .\appointments\templates\appointments\select_service.html:7
-#: .\appointments\views.py:596
+#: .\appointments\views.py:488
 msgid "Book an appointment"
 msgstr "Agende una cita"
 
@@ -262,45 +282,81 @@ msgid "Select time"
 msgstr "Seleccione la hora"
 
 #: .\appointments\templates\appointments\select_time.html:20
-#: .\appointments\templates\base.html:35
+#: .\appointments\templates\base.html:36
 msgid "Book"
 msgstr "Agendar"
 
-#: .\appointments\templates\base.html:26 .\appointments\templates\base.html:55
+#: .\appointments\templates\base.html:26 .\appointments\templates\base.html:56
 msgid "BarberShop"
 msgstr "Barbería"
 
-#: .\appointments\templates\base.html:33
+#: .\appointments\templates\base.html:34
 msgid "Outlook"
-msgstr "Panorama"
+msgstr "Agenda"
 
-#: .\appointments\templates\base.html:38
+#: .\appointments\templates\base.html:39
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-#: .\appointments\views.py:102
-msgid "first text to be translated"
-msgstr "Primer texto para traducir"
+#: .\appointments\tools.py:58
+msgid "Monday"
+msgstr "Lunes"
 
-#: .\appointments\views.py:573
+#: .\appointments\tools.py:58
+msgid "Tuesday"
+msgstr "Martes"
+
+#: .\appointments\tools.py:59
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: .\appointments\tools.py:59
+msgid "Thursday"
+msgstr "Jueves"
+
+#: .\appointments\tools.py:60
+msgid "Friday"
+msgstr "Viernes"
+
+#: .\appointments\tools.py:60
+msgid "Saturday"
+msgstr "Sábado"
+
+#: .\appointments\tools.py:60
+msgid "Sunday"
+msgstr "Domingo"
+
+#: .\appointments\views.py:465 .\appointments\views.py:485
 msgid "There are no available timeslots for this date or service, please select another date"
 msgstr "No hay disponibilidad para esta hora o servicio, por favor seleccione otra fecha"
 
-#: .\appointments\views.py:613
+#: .\appointments\views.py:505
 msgid "This gap is no longer available, please select anotherone"
 msgstr "Esta hora ya no está disponible, por favor seleccione otra"
 
-#: .\appointments\views.py:628
+#: .\appointments\views.py:520
 msgid "This gap is no longer available, please try again"
 msgstr "Esta hora ya no está disponible, por favor inténtelo de nuevo"
 
-#: .\appointments\views.py:697
+#: .\appointments\views.py:532
 msgid "My appointments"
 msgstr "Mis citas"
 
-#: .\appointments\views.py:714
+#: .\appointments\views.py:538
 msgid "Upcoming appointments"
 msgstr "Próximas citas"
+
+#: .\appointments\views.py:574
+msgid "Appointment canceled"
+msgstr "Cita cancelada"
+
+#: .\appointments\views.py:620
+msgid "There are no available timeslots"
+msgstr "No hay disponibilidad en este momento"
+
+#: .\appointments\views.py:666
+msgid "Available timeslots"
+msgstr "Periodos disponibles"
 
 #: .\authenticate\templates\authenticate\login.html:10
 #: .\authenticate\templates\authenticate\login.html:30
@@ -349,7 +405,7 @@ msgstr "Registro exitoso"
 
 #: .\authenticate\views.py:73
 msgid "Invalid phone number, enter a +10 digit number with no spaces in between"
-msgstr "Número de celular invalido, ingrese un número de +10 dígitos sin espacios"
+msgstr "Número de celular inválido, ingrese un número de +10 dígitos sin espacios"
 
 #: .\second_one\settings.py:135
 msgid "English"
@@ -358,9 +414,3 @@ msgstr "Ingles"
 #: .\second_one\settings.py:136
 msgid "Spanish"
 msgstr "Español"
-
-#~ msgid "There are no available timeslots"
-#~ msgstr "No hay disponibilidad en este momento"
-
-#~ msgid "Available timeslots"
-#~ msgstr "Periodos disponibles"

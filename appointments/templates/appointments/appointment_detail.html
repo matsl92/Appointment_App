@@ -4,7 +4,7 @@
 
 
 {% block content %}
-<h1>Appointment details</h1>
+<h1>{% trans 'Appointment details' %}</h1>
 <div class="column-2 appointment-detail">
     <h2>{{ appointment.servicio }}</h2>
     <h2>{{ day }} {{ date }}</h2>
@@ -14,8 +14,8 @@
 <form action="" method="POST"> 
     <br> 
     {% csrf_token %}
-    <input class="btn btn-danger detail-button" type="submit" name="action" id="cancel" value="Cancel">
-    <a href=" {{request.META.HTTP_REFERER|escape}} " class="btn btn-primary detail-button">Go back</a> 
+    <input class="btn btn-danger detail-button" type="submit" name="action" id="cancel" value={% trans 'Cancel' %}>
+    <a href=" {{request.META.HTTP_REFERER|escape}} " class="btn btn-primary detail-button">{% trans 'Go back' %}</a> 
     <input type="hidden" name="pk" value="{{ pk }}">
 </form>
 

@@ -13,5 +13,4 @@ urlpatterns = [
     path('outlook/', views.outlook, name='outlook'), 
     path('create_week/', views.create_week, name='create_week'), 
     path('detail/<int:pk>', views.appointment_detail, name='appointment_detail'), 
-    path('trying/<str:pk>/', views.trying, name='trying')
 ]

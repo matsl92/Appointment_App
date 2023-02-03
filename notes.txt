@@ -16,7 +16,7 @@ Added start, end and service fields to Appointment model, views.appointments and
 
 Created view for appointment details where there's an option to cancel the appointment
 
-
+Added new translations
 
 
 
@@ -46,6 +46,7 @@ message tags should appear with different colour
 
 Overlapping issue when creating Brechas
 
+change url for home view from 'home/' to ''
 
 
 navbar 

@@ -45,15 +45,13 @@
             <div class="swiper-wrapper">
                 {% if appoint %}
                 <div class="swiper-slide slide">
-                    <span>You have an appointment on {{ appoint.inicio }}</span>
-                    <a href="/detail/{{ appoint.pk }}" class="a">Details</a>
+                    <span>{% trans 'You have an appointment on' %} {{ appoint.inicio }}</span>
+                    <a href="/detail/{{ appoint.pk }}" class="a">{% trans 'Details' %}</a>
                 </div>
                 {% endif %}
                 <div class="swiper-slide">Slide 2</div>
                 <div class="swiper-slide">Slide 3</div>
             </div>
-            {% comment %} <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div> {% endcomment %}
             <div class="swiper-pagination"></div>
         </div>
     </section>
