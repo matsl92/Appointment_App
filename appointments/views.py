@@ -11,7 +11,9 @@ from authenticate.forms import NewUserForm
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.utils.translation import gettext as _
-from .tools import Bubble, Label, SemiGap, get_str_values, approximate_time, index_addition, gap_step, gap_duration
+from .tools import (
+    Bubble, Label, SemiGap, get_str_values, approximate_time, index_addition, gap_step, gap_duration, to_spanish
+)
 
 
 # Functions
@@ -55,11 +57,15 @@ def get_next_start_date():
 @login_required()
 def home(request):
     form = NewUserForm(instance=request.user)
-    print(Appointment.objects.filter(user=request.user).filter(final__gte=make_aware(datetime.today())).order_by('inicio').first())
     next_appointment = Appointment.objects.filter(user=request.user).filter(final__gte=make_aware(datetime.today())).order_by('inicio').first()
     
-    context = {'user': request.user, 'form': form, 'message': _('first text to be translated'), 
-               'appoint': next_appointment}
+    context = {
+        'user': request.user, 
+        'form': form, 
+        'url': reverse('appointments:home'), 
+        'message': _('first text to be translated'), 
+        'appoint': next_appointment
+        }
     return render(request, 'appointments/home.html', context)
 
 @login_required()
@@ -554,13 +560,12 @@ def create_week(request):
             return redirect('appointments:create_week')
 
 login_required()
-def appointment_detail(request):
+def appointment_detail(request, pk):
     if request.method == 'GET':
-        pk = request.GET['pk']
         appointment = Appointment.objects.get(pk=pk)
         dt = localtime(appointment.inicio)
         d = dt.strftime('%d/%m/%Y')
-        day = dt.strftime('%A')
+        day = to_spanish[dt.strftime('%A')]
         t = ''.join([dt.strftime('%I:%M %p - '), localtime(appointment.final).strftime('%I:%M %p')])
         if appointment.user.first_name:
             name = appointment.user.first_name
@@ -570,10 +575,7 @@ def appointment_detail(request):
         return render(request, 'appointments/appointment_detail.html', context)
     
     if request.method == 'POST':
-        if request.POST['action'] == 'Go back':
-            return redirect('appointments:appointments')
         if request.POST['action'] == 'Cancel':
-            pk = request.POST['pk']
             appointment = Appointment.objects.get(pk=pk)
             appointment.delete()
             messages.success(request, 'Appointment canceled')

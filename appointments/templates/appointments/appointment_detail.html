@@ -15,9 +15,8 @@
     <br> 
     {% csrf_token %}
     <input class="btn btn-danger detail-button" type="submit" name="action" id="cancel" value="Cancel">
-    <input class="btn btn-primary detail-button" type="submit" name="action" id="cancel" value="Go back">
+    <a href=" {{request.META.HTTP_REFERER|escape}} " class="btn btn-primary detail-button">Go back</a> 
     <input type="hidden" name="pk" value="{{ pk }}">
-</form>
 </form>
 
 {% endblock %}

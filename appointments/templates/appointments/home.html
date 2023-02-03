@@ -43,11 +43,13 @@
         <!-- Swiper -->
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">Slide 1</div>
                 {% if appoint %}
-                    <div class="swiper-slide slide">You have an appointment on {{ appoint.inicio }}</div>
-                    <input type="text">
+                <div class="swiper-slide slide">
+                    <span>You have an appointment on {{ appoint.inicio }}</span>
+                    <a href="/detail/{{ appoint.pk }}" class="a">Details</a>
+                </div>
                 {% endif %}
+                <div class="swiper-slide">Slide 2</div>
                 <div class="swiper-slide">Slide 3</div>
             </div>
             {% comment %} <div class="swiper-button-next"></div>

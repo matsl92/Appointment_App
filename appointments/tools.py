@@ -1,4 +1,5 @@
 from datetime import time, date, datetime, timedelta
+from django.utils.translation import gettext as _
 
 class Bubble:   # Global class
         def __init__(self, start, end):
@@ -53,3 +54,7 @@ def index_addition(index, num): # create_gaps
 gap_step = timedelta(minutes=5) 
 
 gap_duration = timedelta(minutes=30)
+
+to_spanish = {'Monday': _('Monday'), 'Tuesday': _('Tuesday'), 
+              'Wednesday': _('Wednesday'), 'Thursday': _('Thursday'), 
+              'Friday': _('Friday'), 'Saturday': _('Saturday'), 'Sunday': _('Sunday')}
