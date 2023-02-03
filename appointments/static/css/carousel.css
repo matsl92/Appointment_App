@@ -21,9 +21,10 @@ body {
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    /* background: rgb(202, 176, 176); */
     background: rgb(0,0,0);
     background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(33, 37, 41,1) 10%, rgba(33, 37, 41,1) 90%, rgba(0,0,0,0) 100%);
+    padding: 44px;
+    color: #a99c7a;
 
     /* Center slide text vertically */
     display: -webkit-box;

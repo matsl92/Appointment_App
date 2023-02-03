@@ -14,49 +14,7 @@ from django.utils.translation import gettext as _
 from .tools import Bubble, Label, SemiGap, get_str_values, approximate_time, index_addition, gap_step, gap_duration
 
 
-# Classes, functions and variables
-
-# class Bubble:   # Global class
-#         def __init__(self, start, end):
-#             self.start = start
-#             self.end = end
-        
-#         def __str__(self):
-#             return str(self.start.time())
-
-# class SemiGap:   # Global class
-#     def __init__(self, start, end, index):
-#         self.start = start
-#         self.end = end
-#         self.index = index
-    
-#     def __str__(self):
-#         return str(self.start.time().strftime('%I:%M %p'))
-       
-# class Label:
-#     def __init__(self, date):
-#         self.date = date.strftime('%d')
-#         self.day = date.strftime('%a')
-
-# def get_str_values(post):  
-#     values = {}
-#     for key, value in post.items():
-#         values[key] = value
-#     return(values)
-
-# def approximate_time(t):  # create_new_gaps GET
-#     a = t.minute
-#     appr_a = round(a/5)*5
-#     if appr_a == 60:
-#         return time(t.hour + 1, 0)
-#     else:
-#         return time(t.hour, appr_a)
-    
-# def index_addition(index, num): # create_gaps
-#     elements = index.split(':')
-#     last = int(elements[-1])
-#     elements[-1] = str(last+num)
-#     return ':'.join(elements)
+# Functions
               
 def make_semigaps(week, n_days, start_date):    # returns semigap list // doesn't use the last item in the days of week
         wdn = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -91,17 +49,17 @@ def get_next_start_date():
         x = date.today()
     return x
 
-# gap_step = timedelta(minutes=5) 
-
-# gap_duration = timedelta(minutes=30) # Can be modified in select_period.html, when that input is not hidden
-
 
 # Views
 
 @login_required()
 def home(request):
     form = NewUserForm(instance=request.user)
-    context = {'user': request.user, 'form': form, 'message': _('first text to be translated')}
+    print(Appointment.objects.filter(user=request.user).filter(final__gte=make_aware(datetime.today())).order_by('inicio').first())
+    next_appointment = Appointment.objects.filter(user=request.user).filter(final__gte=make_aware(datetime.today())).order_by('inicio').first()
+    
+    context = {'user': request.user, 'form': form, 'message': _('first text to be translated'), 
+               'appoint': next_appointment}
     return render(request, 'appointments/home.html', context)
 
 @login_required()
@@ -536,7 +494,6 @@ def success(request):
     gap_pk = int(request.POST['gap_pk'])
     service_pk = int(request.POST['service_pk'])
     service = Servicio.objects.get(pk=service_pk)
-    # service_duration = Servicio.objects.get(pk=service_pk).duracion
     available_gaps = list(Gap.objects.filter(appointment=None))
     n = service.duracion // gap_step
     base_gap = Gap.objects.get(pk=gap_pk)
@@ -572,41 +529,12 @@ def success(request):
 
 @login_required()
 def appointments(request):
-    # appoints = list(Appointment.objects.filter(user=request.user))
-    # for appoint in appoints:
-    #     try:
-    #         if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
-    #         # if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < datetime.today():    # for naive date_and_times
-    #             appoints.remove(appoint)
-    #     except:
-    #         appoints.remove(appoint)
-    # try:
-    #     appoint_beginnings = [appoint.gap_set.first() for appoint in appoints]
-    #     appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
-    # except:
-    #     appoint_beginnings = []
-    # context = {'list': appoint_beginnings, 'title': _('My appointments')}
-    
     appoints = Appointment.objects.filter(user=request.user).filter(final__gte=make_aware(datetime.today())).order_by('inicio')
     context = {'list': appoints, 'title': _('My appointments')}
     return render(request, 'appointments/appointments.html', context)
 
 @login_required()
 def outlook(request):
-    # appoints = list(Appointment.objects.all())
-    # for appoint in appoints:
-    #     try:
-    #         if appoint.gap_set.last().date_and_time + appoint.gap_set.last().time_period < make_aware(datetime.today()):
-    #             appoints.remove(appoint)
-    #     except:
-    #         appoints.remove(appoint)
-    # try:
-    #     appoint_beginnings = [appoint.gap_set.first() for appoint in appoints]
-    #     appoint_beginnings.sort(key=lambda gap: gap.date_and_time)
-    # except:
-    #     appoint_beginnings = []
-    # context = {'list': appoint_beginnings, 'title': _('Upcoming appointments')}
-    
     appoints = Appointment.objects.filter(final__gte=make_aware(datetime.today())).order_by('inicio')
     context = {'list': appoints, 'title': _('Upcoming appointments')}
     return render(request, 'appointments/appointments.html', context)
@@ -630,9 +558,10 @@ def appointment_detail(request):
     if request.method == 'GET':
         pk = request.GET['pk']
         appointment = Appointment.objects.get(pk=pk)
-        d = appointment.inicio.strftime('%d/%m/%Y')
-        day = appointment.inicio.strftime('%A')
-        t = ''.join([appointment.inicio.strftime('%I:%M %p - '), appointment.final.strftime('%I:%M %p')])
+        dt = localtime(appointment.inicio)
+        d = dt.strftime('%d/%m/%Y')
+        day = dt.strftime('%A')
+        t = ''.join([dt.strftime('%I:%M %p - '), localtime(appointment.final).strftime('%I:%M %p')])
         if appointment.user.first_name:
             name = appointment.user.first_name
         else:
@@ -655,23 +584,6 @@ def success_2(request):
     print(request.POST)
     pk = dict(request.POST.lists())['pk'][0]
     duration = timedelta(minutes=int(dict(request.POST.lists())['duration'][0]))
-    # In order to replace the use of pk for date_and_time //// maybe is also good to replace index for pk for selecting a indexing gap
-    
-    # bgdt = Gap.objects.get(index=index).date_and_time
-    # n_gaps = duration//gap_step
-    # available_gaps = list(Gap.objects.filter(appointment=None))
-    # for i in range(n_gaps):
-    #     if Gap.objects.get(date_and_time=bgdt+(gap_step*i)) in available_gaps:
-    #         pass
-    #     else:
-    #         print('Not all gaps were available')
-    #         'messagge: this gap is no longer available, try again'
-    #         return redirect('appointments:new_gaps')
-    
-    # Keep changing the code in appointment = 
-    
-    
-    
     base_gap_pk = Gap.objects.get(pk=pk).pk
     gap_step = timedelta(minutes=5)
     n_gaps = duration // gap_step
@@ -764,3 +676,6 @@ def gaps_2(request):
         gap = Gap.objects.get(pk=pk)
         context = {'gap': gap}
         return render(request, 'appointments/schedule.html', context)
+    
+def trying(request, pk):
+    return HttpResponse(''.join(['cuestion number ', pk]))

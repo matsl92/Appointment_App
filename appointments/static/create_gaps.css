@@ -94,6 +94,11 @@ h1 {
     justify-content: center;
 }
 
+.p-4:has(> #home-container) {
+    display: flex;
+    align-items: center;
+}
+
 .appointment-detail h2 {
     height: 1vh;
     font-size: 16px;
@@ -195,6 +200,23 @@ h1 {
 
 #carousel {
     width: 30vw;
+}
+
+.slide {
+    /* background-image: url(../media/main_background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 40px rgba(0,0,0,0.1), 0 0 60px rgba(0,0,0,0.1), 0 0 80px rgba(0,0,0,0.1);
+    min-height: 64vh; */
+
+    /* background-image: url(../media/main_background.jpg);
+    linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)), */
+    
+    /* width: 80%;
+    height: 400px;
+    background-size: cover;
+    color: white;
+    padding: 20px; */
 }
 
 /* buttons */

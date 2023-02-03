@@ -44,9 +44,11 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
+                {% if appoint %}
+                    <div class="swiper-slide slide">You have an appointment on {{ appoint.inicio }}</div>
+                    <input type="text">
+                {% endif %}
                 <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 4</div>
             </div>
             {% comment %} <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div> {% endcomment %}

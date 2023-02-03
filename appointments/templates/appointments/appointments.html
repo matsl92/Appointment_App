@@ -9,8 +9,6 @@
     {% csrf_token %}
     <div class="column-2">
         {% for appoint in list %}
-        {% comment %} <div class="appointment-label">{{ appoint.date_and_time }}</div> {% endcomment %}
-        {% comment %} <div class="appointment-label">{{ appoint.inicio }}</div> {% endcomment %}
         <input type="submit" name="pk" id="{{ appoint.pk }}" value="{{ appoint.pk }}">
         <label class="appointment-label" for="{{ appoint.pk }}">{{ appoint.inicio }}</label>
         {% endfor %}

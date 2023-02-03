@@ -5,23 +5,19 @@
 
 {% block content %}
 <h1>Appointment details</h1>
-
-{% comment %} <div class="appointment-detail"> {% endcomment %}
-    
-    <div class="column-2 appointment-detail">
-        <h2>{{ appointment.servicio }}</h2>
-        <h2>{{ day }} {{ date }}</h2>
-        <h2>{{ time }}</h2>
-        <h2>{{ name }}</h2>
-        {% comment %} </div> {% endcomment %}
-    </div>
-    <form action="" method="POST"> 
-        <br> 
-        {% csrf_token %}
-        <input class="btn btn-danger detail-button" type="submit" name="action" id="cancel" value="Cancel">
-        <input class="btn btn-primary detail-button" type="submit" name="action" id="cancel" value="Go back">
-        <input type="hidden" name="pk" value="{{ pk }}">
-    </form>
+<div class="column-2 appointment-detail">
+    <h2>{{ appointment.servicio }}</h2>
+    <h2>{{ day }} {{ date }}</h2>
+    <h2>{{ time }}</h2>
+    <h2>{{ name }}</h2>
+</div>
+<form action="" method="POST"> 
+    <br> 
+    {% csrf_token %}
+    <input class="btn btn-danger detail-button" type="submit" name="action" id="cancel" value="Cancel">
+    <input class="btn btn-primary detail-button" type="submit" name="action" id="cancel" value="Go back">
+    <input type="hidden" name="pk" value="{{ pk }}">
+</form>
 </form>
 
 {% endblock %}
