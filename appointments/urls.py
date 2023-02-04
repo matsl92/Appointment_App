@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'appointments'
 urlpatterns = [
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('personal_info/', views.personal_info, name = 'personal_info'), 
     path('create_gaps/', views.create_gaps, name='create_gaps'),
     path('create_gaps/select_period/', views.select_period, name='select_period'), 
