@@ -18,7 +18,7 @@ Created view for appointment details where there's an option to cancel the appoi
 
 Added new translations
 
-
+change url for home view from 'home/' to ''
 
 
 
@@ -28,7 +28,6 @@ Added new translations
 BUGS
 
 
-max_date for views.gaps, select_service
 
 
 
@@ -46,7 +45,11 @@ message tags should appear with different colour
 
 Overlapping issue when creating Brechas
 
-change url for home view from 'home/' to ''
+Home view design
+
+Service minimum duration
+
+Complete services and qualify the experience to then add points
 
 
 navbar 
